@@ -469,153 +469,6 @@ input {
 .state-bullets strong {
   font-size: .92rem;
 }
-.district-cycle-section {
-  border-top: 1px solid var(--line);
-  padding-top: 22px;
-}
-.district-drop summary span {
-  color: var(--muted);
-  font-size: .92rem;
-  font-weight: 850;
-}
-.district-panel {
-  border-top: 1px solid var(--line);
-  padding: 16px 18px 18px;
-}
-.district-toolbar {
-  margin: 0 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.district-instructions {
-  margin: 0;
-  color: var(--muted);
-  font-weight: 850;
-}
-.district-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.district-reveal-all,
-.district-reset-all {
-  border: 1px solid #b9c4bb;
-  border-radius: 7px;
-  background: #ffffff;
-  color: #245b50;
-  padding: 9px 12px;
-  font-weight: 900;
-  cursor: pointer;
-}
-.district-reveal-all {
-  background: #245b50;
-  border-color: #245b50;
-  color: #ffffff;
-}
-.district-reveal-all:hover,
-.district-reveal-all:focus-visible,
-.district-reset-all:hover,
-.district-reset-all:focus-visible,
-.district-card-reset:hover,
-.district-card-reset:focus-visible {
-  border-color: #789885;
-  box-shadow: 0 0 0 3px rgba(73, 122, 88, .18);
-  outline: none;
-}
-.district-cycle-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 10px;
-}
-.district-cycle-card {
-  position: relative;
-  min-height: 136px;
-}
-.district-cycle-surface {
-  min-height: 136px;
-  width: 100%;
-  text-align: left;
-  color: var(--ink);
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 38px 12px 12px;
-  display: grid;
-  align-content: start;
-  gap: 9px;
-  cursor: pointer;
-}
-.district-cycle-surface:hover,
-.district-cycle-surface:focus-visible {
-  border-color: #9fb5a7;
-  box-shadow: 0 12px 28px rgba(50, 60, 54, .10);
-  outline: none;
-}
-.district-cycle-card.is-active .district-cycle-surface {
-  background: #edf5f0;
-  border-color: #b7c9bd;
-}
-.district-card-reset {
-  position: absolute;
-  z-index: 2;
-  top: 8px;
-  right: 8px;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #cad3cc;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #52665b;
-  display: grid;
-  place-items: center;
-  line-height: 1;
-  font-size: 1.05rem;
-  cursor: pointer;
-}
-.district-cycle-card[data-stage="0"] .district-card-reset {
-  opacity: .42;
-}
-.district-name {
-  color: var(--ink);
-  font-size: .98rem;
-  font-weight: 950;
-  padding-right: 30px;
-}
-.district-stage {
-  min-height: 58px;
-  color: #245b50;
-  display: grid;
-  align-content: start;
-  gap: 7px;
-  font-size: .92rem;
-  line-height: 1.35;
-}
-.district-label {
-  color: #607267;
-  font-size: .72rem;
-  font-weight: 950;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
-.district-stage strong {
-  font-size: 1rem;
-}
-.district-bullets {
-  margin: 0;
-  padding-left: 18px;
-  color: #245b50;
-  display: grid;
-  gap: 4px;
-  font-size: .88rem;
-  line-height: 1.32;
-}
-.district-bullets strong {
-  font-size: .88rem;
-}
 .activity-section {
   margin-top: 24px;
 }
@@ -638,7 +491,7 @@ input {
   .home-intro {
     grid-template-columns: 1fr;
   }
-  .reveal-grid, .reveal-grid.compact, .reveal-grid.district-grid, .state-cycle-grid, .district-cycle-grid {
+  .reveal-grid, .reveal-grid.compact, .reveal-grid.district-grid, .state-cycle-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -656,7 +509,7 @@ input {
   .help-panel, .utah-search {
     padding-left: 22px;
   }
-  .reveal-grid, .reveal-grid.compact, .reveal-grid.district-grid, .state-cycle-grid, .district-cycle-grid {
+  .reveal-grid, .reveal-grid.compact, .reveal-grid.district-grid, .state-cycle-grid {
     grid-template-columns: 1fr;
   }
   .state-toolbar {
@@ -666,16 +519,6 @@ input {
     align-items: stretch;
   }
   .state-actions button {
-    flex: 1 1 140px;
-  }
-  .district-toolbar {
-    align-items: stretch;
-  }
-  .district-actions {
-    align-items: stretch;
-    width: 100%;
-  }
-  .district-actions button {
     flex: 1 1 140px;
   }
   .search-row, .site-footer { display: grid; }

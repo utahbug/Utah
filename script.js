@@ -121,3 +121,83 @@ if (resetStateGrid) {
     document.querySelectorAll(".state-cycle-card").forEach(resetStateCard);
   });
 }
+
+function resetDistrictCard(card) {
+  const slot = card.querySelector(".district-stage");
+  const surface = card.querySelector(".district-cycle-surface");
+  card.dataset.stage = "0";
+  card.classList.remove("is-active", "stage-coverage", "stage-verification", "stage-all");
+  if (slot) slot.textContent = "";
+  if (surface) surface.setAttribute("aria-label", "Show " + (card.dataset.label || "district") + " details");
+}
+
+function renderDistrictStage(card, stage) {
+  if (stage === 0) {
+    resetDistrictCard(card);
+    return;
+  }
+
+  const slot = card.querySelector(".district-stage");
+  const surface = card.querySelector(".district-cycle-surface");
+  if (!slot) return;
+
+  const label = card.dataset.label || "District";
+  const answer = card.dataset.answer || "";
+  const note = card.dataset.note || "";
+
+  card.dataset.stage = String(stage);
+  card.classList.remove("stage-coverage", "stage-verification", "stage-all");
+  card.classList.add("is-active");
+
+  if (stage === 1) {
+    card.classList.add("stage-coverage");
+    slot.innerHTML = '<span class="district-label">Coverage note</span><strong>' + escapeHtml(answer) + '</strong>';
+  }
+
+  if (stage === 2) {
+    card.classList.add("stage-verification");
+    slot.innerHTML = '<span class="district-label">Verification note</span><span>' + escapeHtml(note) + '</span>';
+  }
+
+  if (stage === 3) {
+    card.classList.add("stage-all");
+    slot.innerHTML = '<span class="district-label">All together</span><ul class="district-bullets"><li><strong>Coverage:</strong> ' + escapeHtml(answer) + '</li><li><strong>Note:</strong> ' + escapeHtml(note) + '</li></ul>';
+  }
+
+  if (surface) surface.setAttribute("aria-label", "Show next " + label + " detail");
+}
+
+function districtCardsForGroup(group) {
+  return document.querySelectorAll('.district-cycle-card[data-district-group="' + group + '"]');
+}
+
+document.querySelectorAll(".district-cycle-card").forEach((card) => {
+  const surface = card.querySelector(".district-cycle-surface");
+  const reset = card.querySelector(".district-card-reset");
+
+  if (surface) {
+    surface.addEventListener("click", () => {
+      const current = Number(card.dataset.stage || "0");
+      const next = current >= 2 ? 1 : current + 1;
+      renderDistrictStage(card, next);
+    });
+  }
+
+  if (reset) {
+    reset.addEventListener("click", () => {
+      resetDistrictCard(card);
+    });
+  }
+});
+
+document.querySelectorAll(".district-reveal-all").forEach((button) => {
+  button.addEventListener("click", () => {
+    districtCardsForGroup(button.dataset.districtGroup || "").forEach((card) => renderDistrictStage(card, 3));
+  });
+});
+
+document.querySelectorAll(".district-reset-all").forEach((button) => {
+  button.addEventListener("click", () => {
+    districtCardsForGroup(button.dataset.districtGroup || "").forEach(resetDistrictCard);
+  });
+});
