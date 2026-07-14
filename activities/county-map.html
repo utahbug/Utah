@@ -351,7 +351,7 @@
   </style>
 </head>
 <body>
-  <p style="margin:12px auto 0;max-width:1180px;font-family:system-ui,sans-serif;"><a href="../index.html" style="color:#18584f;font-weight:800;">← UtahBug home</a></p>
+  <p style="margin:12px auto 0;max-width:1180px;font-family:system-ui,sans-serif;"><a href="../index.html" style="color:#18584f;font-weight:800;">&larr; UtahBug home</a></p>
   <div class="app">
     <header class="topbar">
       <div>
@@ -572,5 +572,473 @@
     renderAllList();
     renderMap();
   </script>
+<section class="county-card-practice" aria-labelledby="county-card-title">
+    <style>
+      .county-card-practice {
+        width: min(1180px, calc(100vw - 32px));
+        margin: 28px auto;
+        padding: 24px;
+        border: 1px solid #c9d2cb;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 18px 60px rgba(26, 40, 35, 0.10);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      .county-card-practice h2 {
+        margin: 0;
+        font-size: clamp(1.45rem, 2.3vw, 2rem);
+        line-height: 1.08;
+      }
+      .county-card-practice p {
+        color: #66736c;
+      }
+      .county-card-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 12px 0 10px;
+        flex-wrap: wrap;
+      }
+      .county-card-instructions {
+        margin: 0;
+        font-weight: 850;
+      }
+      .county-card-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .county-card-actions button,
+      .county-card-reset {
+        border: 1px solid #b9c4bb;
+        border-radius: 7px;
+        background: #ffffff;
+        color: #245b50;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 900;
+      }
+      .county-card-actions button {
+        padding: 9px 12px;
+      }
+      .county-reveal-all {
+        background: #245b50 !important;
+        border-color: #245b50 !important;
+        color: #ffffff !important;
+      }
+      .county-card-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .county-cycle-card {
+        position: relative;
+        min-height: 162px;
+      }
+      .county-card-surface {
+        width: 100%;
+        min-height: 162px;
+        padding: 40px 14px 14px;
+        display: grid;
+        align-content: start;
+        gap: 10px;
+        text-align: left;
+        color: #17201d;
+        background: #f8faf6;
+        border: 1px solid #c9d2cb;
+        border-radius: 8px;
+        cursor: pointer;
+        font: inherit;
+      }
+      .county-cycle-card.is-active .county-card-surface {
+        background: #edf5f0;
+        border-color: #b7c9bd;
+      }
+      .county-card-surface:hover,
+      .county-card-surface:focus-visible,
+      .county-card-actions button:hover,
+      .county-card-actions button:focus-visible,
+      .county-card-reset:hover,
+      .county-card-reset:focus-visible {
+        border-color: #789885;
+        box-shadow: 0 0 0 3px rgba(73, 122, 88, .18);
+        outline: none;
+      }
+      .county-card-reset {
+        position: absolute;
+        z-index: 2;
+        top: 8px;
+        right: 8px;
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        line-height: 1;
+        font-size: 1.05rem;
+        color: #52665b;
+      }
+      .county-cycle-card[data-stage="0"] .county-card-reset {
+        opacity: .42;
+      }
+      .county-name {
+        padding-right: 30px;
+        font-size: 1.03rem;
+        font-weight: 950;
+      }
+      .county-stage {
+        min-height: 76px;
+        color: #245b50;
+        display: grid;
+        gap: 7px;
+        align-content: start;
+      }
+      .county-label {
+        color: #607267;
+        font-size: .72rem;
+        font-weight: 950;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+      .county-stage strong {
+        font-size: 1.08rem;
+      }
+      .county-bullets {
+        margin: 0;
+        padding-left: 18px;
+        display: grid;
+        gap: 4px;
+        font-size: .91rem;
+        line-height: 1.35;
+      }
+      @media (max-width: 900px) {
+        .county-card-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 560px) {
+        .county-card-practice {
+          padding: 18px;
+        }
+        .county-card-grid {
+          grid-template-columns: 1fr;
+        }
+        .county-card-actions {
+          width: 100%;
+        }
+        .county-card-actions button {
+          flex: 1 1 140px;
+        }
+      }
+    </style>
+    <h2 id="county-card-title">County Boxes</h2>
+    <p>Use these as a slower companion to the clickable map. Tap a county, think for a second, and keep tapping to cycle through the basics.</p>
+    <div class="county-card-toolbar">
+      <p class="county-card-instructions">Tap a county to reveal. Keep tapping to cycle through: seat, location clue, area, memory clue.</p>
+      <div class="county-card-actions">
+        <button class="county-reveal-all" type="button">Reveal all</button>
+        <button class="county-reset-all" type="button">Reset all</button>
+      </div>
+    </div>
+    <div class="county-card-grid">
+      <article class="county-cycle-card" data-stage="0" data-name="Beaver" data-seat="Beaver" data-where="Southwest Utah" data-area="2,590" data-clue="Same-name county and seat; look near I-15, the Tushar Mountains, and Minersville Reservoir.">
+        <button class="county-card-reset" type="button" title="Reset Beaver County" aria-label="Reset Beaver County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Beaver County details">
+          <span class="county-name">Beaver County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Box Elder" data-seat="Brigham City" data-where="Northwest corner" data-area="5,746" data-clue="Think Promontory, the Golden Spike, Bear River Migratory Bird Refuge, and a lot of Great Salt Lake shoreline.">
+        <button class="county-card-reset" type="button" title="Reset Box Elder County" aria-label="Reset Box Elder County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Box Elder County details">
+          <span class="county-name">Box Elder County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Cache" data-seat="Logan" data-where="Northern Utah" data-area="1,165" data-clue="Logan, Utah State University, and Cache Valley are the memory hooks.">
+        <button class="county-card-reset" type="button" title="Reset Cache County" aria-label="Reset Cache County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Cache County details">
+          <span class="county-name">Cache County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Carbon" data-seat="Price" data-where="Central-eastern Utah" data-area="1,478" data-clue="Coal country, Helper, Price, and the route toward Nine Mile Canyon.">
+        <button class="county-card-reset" type="button" title="Reset Carbon County" aria-label="Reset Carbon County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Carbon County details">
+          <span class="county-name">Carbon County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Daggett" data-seat="Manila" data-where="Northeast corner" data-area="697" data-clue="The tiny one by Flaming Gorge and the Wyoming line.">
+        <button class="county-card-reset" type="button" title="Reset Daggett County" aria-label="Reset Daggett County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Daggett County details">
+          <span class="county-name">Daggett County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Davis" data-seat="Farmington" data-where="Wasatch Front north of Salt Lake" data-area="299" data-clue="Smallest Utah county by area; think Farmington, Layton, Bountiful, and Antelope Island.">
+        <button class="county-card-reset" type="button" title="Reset Davis County" aria-label="Reset Davis County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Davis County details">
+          <span class="county-name">Davis County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Duchesne" data-seat="Duchesne" data-where="Uintah Basin" data-area="3,241" data-clue="Uintah Basin county with Starvation Reservoir and a county seat that shares the county name.">
+        <button class="county-card-reset" type="button" title="Reset Duchesne County" aria-label="Reset Duchesne County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Duchesne County details">
+          <span class="county-name">Duchesne County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Emery" data-seat="Castle Dale" data-where="Central Utah" data-area="4,462" data-clue="San Rafael Swell country; Castle Dale is the county seat.">
+        <button class="county-card-reset" type="button" title="Reset Emery County" aria-label="Reset Emery County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Emery County details">
+          <span class="county-name">Emery County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Garfield" data-seat="Panguitch" data-where="South-central Utah" data-area="5,083" data-clue="Bryce Canyon, Panguitch, and long high-plateau drives.">
+        <button class="county-card-reset" type="button" title="Reset Garfield County" aria-label="Reset Garfield County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Garfield County details">
+          <span class="county-name">Garfield County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Grand" data-seat="Moab" data-where="Eastern Utah" data-area="3,672" data-clue="Moab, Arches, Canyonlands, and the Colorado River.">
+        <button class="county-card-reset" type="button" title="Reset Grand County" aria-label="Reset Grand County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Grand County details">
+          <span class="county-name">Grand County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Iron" data-seat="Parowan" data-where="Southwest Utah" data-area="3,297" data-clue="Cedar City is larger, but Parowan is the county seat.">
+        <button class="county-card-reset" type="button" title="Reset Iron County" aria-label="Reset Iron County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Iron County details">
+          <span class="county-name">Iron County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Juab" data-seat="Nephi" data-where="Central Utah" data-area="3,392" data-clue="Nephi and the I-15 stretch before central Utah opens up.">
+        <button class="county-card-reset" type="button" title="Reset Juab County" aria-label="Reset Juab County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Juab County details">
+          <span class="county-name">Juab County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Kane" data-seat="Kanab" data-where="Southern Utah" data-area="3,990" data-clue="Kanab, the Arizona line, and the east side of Zion country.">
+        <button class="county-card-reset" type="button" title="Reset Kane County" aria-label="Reset Kane County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Kane County details">
+          <span class="county-name">Kane County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Millard" data-seat="Fillmore" data-where="West-central Utah" data-area="6,572" data-clue="Fillmore was Utah Territory's first capital.">
+        <button class="county-card-reset" type="button" title="Reset Millard County" aria-label="Reset Millard County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Millard County details">
+          <span class="county-name">Millard County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Morgan" data-seat="Morgan" data-where="Wasatch Back" data-area="609" data-clue="A smaller mountain county between Weber, Davis, and Summit.">
+        <button class="county-card-reset" type="button" title="Reset Morgan County" aria-label="Reset Morgan County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Morgan County details">
+          <span class="county-name">Morgan County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Piute" data-seat="Junction" data-where="South-central Utah" data-area="758" data-clue="One of Utah's smallest counties; remember Junction and Piute Reservoir.">
+        <button class="county-card-reset" type="button" title="Reset Piute County" aria-label="Reset Piute County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Piute County details">
+          <span class="county-name">Piute County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Rich" data-seat="Randolph" data-where="Far northern Utah" data-area="1,029" data-clue="Bear Lake country; Garden City is famous, Randolph is the seat.">
+        <button class="county-card-reset" type="button" title="Reset Rich County" aria-label="Reset Rich County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Rich County details">
+          <span class="county-name">Rich County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Salt Lake" data-seat="Salt Lake City" data-where="Central Wasatch Front" data-area="742" data-clue="The capital county and Utah's population center.">
+        <button class="county-card-reset" type="button" title="Reset Salt Lake County" aria-label="Reset Salt Lake County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Salt Lake County details">
+          <span class="county-name">Salt Lake County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="San Juan" data-seat="Monticello" data-where="Southeast corner" data-area="7,820" data-clue="Utah's largest county by area; think Bears Ears, Monument Valley, and Monticello.">
+        <button class="county-card-reset" type="button" title="Reset San Juan County" aria-label="Reset San Juan County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show San Juan County details">
+          <span class="county-name">San Juan County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Sanpete" data-seat="Manti" data-where="Central Utah" data-area="1,590" data-clue="Manti, Ephraim, and the long valley east of the Wasatch Plateau.">
+        <button class="county-card-reset" type="button" title="Reset Sanpete County" aria-label="Reset Sanpete County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Sanpete County details">
+          <span class="county-name">Sanpete County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Sevier" data-seat="Richfield" data-where="Central Utah" data-area="1,911" data-clue="Richfield and I-70 make a good memory anchor.">
+        <button class="county-card-reset" type="button" title="Reset Sevier County" aria-label="Reset Sevier County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Sevier County details">
+          <span class="county-name">Sevier County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Summit" data-seat="Coalville" data-where="Wasatch Back" data-area="1,872" data-clue="Park City is famous, but Coalville is the seat.">
+        <button class="county-card-reset" type="button" title="Reset Summit County" aria-label="Reset Summit County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Summit County details">
+          <span class="county-name">Summit County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Tooele" data-seat="Tooele" data-where="West of Salt Lake" data-area="6,941" data-clue="Great Salt Lake desert, Tooele Valley, and a lot of western open space.">
+        <button class="county-card-reset" type="button" title="Reset Tooele County" aria-label="Reset Tooele County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Tooele County details">
+          <span class="county-name">Tooele County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Uintah" data-seat="Vernal" data-where="Northeast Utah" data-area="4,480" data-clue="Vernal, dinosaurs, oil and gas country, and the Uinta Basin.">
+        <button class="county-card-reset" type="button" title="Reset Uintah County" aria-label="Reset Uintah County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Uintah County details">
+          <span class="county-name">Uintah County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Utah" data-seat="Provo" data-where="Central Wasatch Front" data-area="2,003" data-clue="Provo, Orem, Utah Lake, and fast-growing Utah Valley.">
+        <button class="county-card-reset" type="button" title="Reset Utah County" aria-label="Reset Utah County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Utah County details">
+          <span class="county-name">Utah County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Wasatch" data-seat="Heber City" data-where="Wasatch Back" data-area="1,176" data-clue="Heber Valley, Midway, and the back side of the central Wasatch.">
+        <button class="county-card-reset" type="button" title="Reset Wasatch County" aria-label="Reset Wasatch County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Wasatch County details">
+          <span class="county-name">Wasatch County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Washington" data-seat="St. George" data-where="Southwest corner" data-area="2,426" data-clue="St. George, red rock, and the Arizona/Nevada corner.">
+        <button class="county-card-reset" type="button" title="Reset Washington County" aria-label="Reset Washington County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Washington County details">
+          <span class="county-name">Washington County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Wayne" data-seat="Loa" data-where="South-central Utah" data-area="2,461" data-clue="Capitol Reef country; Loa is the seat.">
+        <button class="county-card-reset" type="button" title="Reset Wayne County" aria-label="Reset Wayne County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Wayne County details">
+          <span class="county-name">Wayne County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+      <article class="county-cycle-card" data-stage="0" data-name="Weber" data-seat="Ogden" data-where="Northern Wasatch Front" data-area="576" data-clue="Ogden, the Weber River, and the north end of the Wasatch Front.">
+        <button class="county-card-reset" type="button" title="Reset Weber County" aria-label="Reset Weber County">&#8635;</button>
+        <button class="county-card-surface" type="button" aria-label="Show Weber County details">
+          <span class="county-name">Weber County</span>
+          <span class="county-stage" aria-live="polite"></span>
+        </button>
+      </article>
+    </div>
+    <script>
+      const countyEscapeMap = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" };
+
+      function escapeCountyHtml(value) {
+        return String(value || "").replace(/[&<>"']/g, (character) => countyEscapeMap[character]);
+      }
+
+      function resetCountyCard(card) {
+        const slot = card.querySelector(".county-stage");
+        const surface = card.querySelector(".county-card-surface");
+        card.dataset.stage = "0";
+        card.classList.remove("is-active", "stage-seat", "stage-where", "stage-area", "stage-clue", "stage-all");
+        if (slot) slot.textContent = "";
+        if (surface) surface.setAttribute("aria-label", "Show " + (card.dataset.name || "county") + " County details");
+      }
+
+      function renderCountyStage(card, stage) {
+        if (stage === 0) {
+          resetCountyCard(card);
+          return;
+        }
+
+        const slot = card.querySelector(".county-stage");
+        const surface = card.querySelector(".county-card-surface");
+        if (!slot) return;
+
+        const name = card.dataset.name || "County";
+        const seat = card.dataset.seat || "";
+        const where = card.dataset.where || "";
+        const area = card.dataset.area || "";
+        const clue = card.dataset.clue || "";
+
+        card.dataset.stage = String(stage);
+        card.classList.remove("stage-seat", "stage-where", "stage-area", "stage-clue", "stage-all");
+        card.classList.add("is-active");
+
+        if (stage === 1) {
+          card.classList.add("stage-seat");
+          slot.innerHTML = '<span class="county-label">County seat</span><strong>' + escapeCountyHtml(seat) + '</strong>';
+        }
+
+        if (stage === 2) {
+          card.classList.add("stage-where");
+          slot.innerHTML = '<span class="county-label">Where in Utah</span><strong>' + escapeCountyHtml(where) + '</strong>';
+        }
+
+        if (stage === 3) {
+          card.classList.add("stage-area");
+          slot.innerHTML = '<span class="county-label">Area</span><strong>About ' + escapeCountyHtml(area) + ' sq mi</strong>';
+        }
+
+        if (stage === 4) {
+          card.classList.add("stage-clue");
+          slot.innerHTML = '<span class="county-label">Memory clue</span><span>' + escapeCountyHtml(clue) + '</span>';
+        }
+
+        if (stage === 5) {
+          card.classList.add("stage-all");
+          slot.innerHTML = '<span class="county-label">All together</span><ul class="county-bullets"><li><strong>Seat:</strong> ' + escapeCountyHtml(seat) + '</li><li><strong>Where:</strong> ' + escapeCountyHtml(where) + '</li><li><strong>Area:</strong> about ' + escapeCountyHtml(area) + ' sq mi</li><li><strong>Clue:</strong> ' + escapeCountyHtml(clue) + '</li></ul>';
+        }
+
+        if (surface) surface.setAttribute("aria-label", "Show next " + name + " County detail");
+      }
+
+      document.querySelectorAll(".county-cycle-card").forEach((card) => {
+        const surface = card.querySelector(".county-card-surface");
+        const reset = card.querySelector(".county-card-reset");
+        if (surface) {
+          surface.addEventListener("click", () => {
+            const current = Number(card.dataset.stage || "0");
+            const next = current >= 4 ? 1 : current + 1;
+            renderCountyStage(card, next);
+          });
+        }
+        if (reset) {
+          reset.addEventListener("click", () => resetCountyCard(card));
+        }
+      });
+
+      const revealCountyAll = document.querySelector(".county-reveal-all");
+      if (revealCountyAll) {
+        revealCountyAll.addEventListener("click", () => {
+          document.querySelectorAll(".county-cycle-card").forEach((card) => renderCountyStage(card, 5));
+        });
+      }
+
+      const resetCountyAll = document.querySelector(".county-reset-all");
+      if (resetCountyAll) {
+        resetCountyAll.addEventListener("click", () => {
+          document.querySelectorAll(".county-cycle-card").forEach(resetCountyCard);
+        });
+      }
+    </script>
+  </section>
 </body>
 </html>
