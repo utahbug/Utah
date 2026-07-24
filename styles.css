@@ -147,9 +147,37 @@ h1 {
   letter-spacing: 0;
 }
 .help-stack {
-  margin-top: 18px;
   display: grid;
   gap: 16px;
+}
+.link-index {
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.link-index h2 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+.link-index ul {
+  margin: 14px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+.link-index a {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  border: 1px solid #c7cfc8;
+  border-radius: 7px;
+  padding: 7px 10px;
+  color: #245b50;
+  background: white;
+  text-decoration: none;
+  font-weight: 850;
 }
 details {
   border: 1px solid var(--line);
