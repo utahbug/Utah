@@ -26,7 +26,7 @@ body {
 }
 a { color: inherit; }
 .site-header {
-  min-height: 230px;
+  min-height: 150px;
   color: white;
   background:
     linear-gradient(90deg, rgba(20, 28, 34, .86), rgba(20, 28, 34, .48) 52%, rgba(20, 28, 34, .2)),
@@ -36,12 +36,11 @@ a { color: inherit; }
 }
 .header-inner {
   width: min(1180px, calc(100% - 28px));
-  min-height: 230px;
+  min-height: 150px;
   margin: 0 auto;
-  padding: 20px 0 22px;
-  display: grid;
-  align-content: space-between;
-  gap: 22px;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
 }
 .brand {
   display: inline-flex;
@@ -62,7 +61,7 @@ a { color: inherit; }
 }
 .brand strong, .brand small { display: block; }
 .brand strong {
-  font-size: clamp(2.4rem, 7vw, 5.2rem);
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
   line-height: .9;
   letter-spacing: 0;
 }
@@ -150,8 +149,99 @@ h1 {
   display: grid;
   gap: 16px;
 }
+.home-menu-link {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 18px;
+  background: var(--panel);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1.18rem;
+}
+.home-menu-link::after {
+  content: ">";
+  color: var(--redrock);
+}
+.home-menu-link:hover,
+.home-menu-link:focus-visible {
+  border-color: #9fb5a7;
+  box-shadow: 0 0 0 3px rgba(73, 122, 88, .16);
+  outline: none;
+}
+.help-stack > * {
+  box-shadow: 0 5px 0 rgba(31, 36, 40, .10);
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+}
+.help-stack > :nth-child(1) {
+  background: #d9eee8;
+  border-color: #8bb8aa;
+}
+.help-stack > :nth-child(2) {
+  background: #f4e4ad;
+  border-color: #d3b85e;
+}
+.help-stack > :nth-child(3) {
+  background: #f2d1bf;
+  border-color: #cf8b68;
+}
+.help-stack > :nth-child(4) {
+  background: #d7e9f2;
+  border-color: #8fb6c9;
+}
+.help-stack > *:hover,
+.help-stack > *:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 rgba(31, 36, 40, .12);
+}
+.directory-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.directory-card {
+  min-height: 112px;
+  display: grid;
+  align-content: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--panel);
+  color: var(--ink);
+  text-decoration: none;
+}
+.directory-card strong {
+  color: #245b50;
+  font-size: 1.12rem;
+}
+.directory-card span {
+  color: var(--muted);
+}
+.directory-card:hover,
+.directory-card:focus-visible {
+  border-color: #9fb5a7;
+  box-shadow: 0 10px 24px rgba(50, 60, 54, .10);
+  outline: none;
+}
+.official-search {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.official-search label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 900;
+}
 .link-index {
-  margin-top: 40px;
+  margin-top: clamp(220px, 34vh, 480px);
   padding-top: 22px;
   border-top: 1px solid var(--line);
 }
@@ -672,7 +762,7 @@ input {
 }
 @media (max-width: 560px) {
   .site-header, .header-inner {
-    min-height: 260px;
+    min-height: 128px;
   }
   .brand {
     align-items: flex-start;
@@ -683,6 +773,12 @@ input {
   }
   .help-panel, .utah-search {
     padding-left: 22px;
+  }
+  .directory-grid {
+    grid-template-columns: 1fr;
+  }
+  .link-index {
+    margin-top: 180px;
   }
   .reveal-grid, .reveal-grid.compact, .reveal-grid.district-grid, .state-cycle-grid, .district-cycle-grid {
     grid-template-columns: 1fr;
