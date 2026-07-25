@@ -53,10 +53,20 @@ a { color: inherit; }
   align-items: center;
 }
 .brand {
-  display: inline-flex;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  display: flex;
   align-items: center;
   gap: 11px;
+  padding: 16px max(14px, calc((100% - 1180px) / 2));
   text-decoration: none;
+  cursor: pointer;
+}
+.brand:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, .9);
+  outline-offset: -5px;
 }
 .brand-mark {
   display: grid;
