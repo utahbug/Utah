@@ -904,7 +904,7 @@ input {
 .dc-memorial-feature {
   grid-column: 1 / -1;
   width: min(100%, 760px);
-  margin: 12px 0 0;
+  margin: 2px 0 12px;
   padding: 8px;
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -918,12 +918,13 @@ input {
   object-fit: cover;
   border-radius: 7px;
 }
-.dc-memorial-feature figcaption {
-  padding: 8px 4px 2px;
-  color: var(--muted);
-  font-size: .84rem;
-  font-weight: 800;
-  line-height: 1.35;
+.district-of-columbia-divider {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 1px;
+  margin: 16px 0 6px;
+  border: 0;
+  background: var(--line);
 }
 .district-of-columbia-card {
   grid-column: 1;
@@ -966,8 +967,35 @@ input {
 }
 
 .states-territory-link {
-  margin-right: auto;
-  margin-left: 0;
+  width: min(100%, 360px);
+  min-height: 72px;
+  margin: 12px auto 4px 0;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 2px solid #3b8ca0;
+  border-radius: 10px;
+  color: #174f5b;
+  background: linear-gradient(135deg, #d8f1ed 0%, #c9e8f5 58%, #e6def3 100%);
+  box-shadow: 0 5px 0 rgba(41, 99, 112, .18);
+  text-decoration: none;
+}
+
+.states-territory-link::after {
+  content: "\2192";
+  color: #b65334;
+  font-size: 1.35rem;
+  font-weight: 950;
+}
+
+.states-territory-link:hover,
+.states-territory-link:focus-visible {
+  border-color: #246f82;
+  box-shadow: 0 7px 0 rgba(41, 99, 112, .2);
+  transform: translateY(-2px);
+  outline: none;
 }
 
 .territory-bottom-illustration {
@@ -1196,12 +1224,12 @@ body:not(.territory-page) .state-cycle-card[data-card-color].is-active .state-cy
 }
 
 .territory-page .territory-expanded {
-  min-height: calc(100svh - 112px);
+  min-height: 0;
   scroll-margin-top: 108px;
 }
 
 .territory-page .territory-expanded .state-cycle-surface {
-  min-height: calc(100svh - 112px);
+  min-height: 0;
   align-content: start;
   cursor: zoom-out;
 }
@@ -1314,7 +1342,7 @@ body:not(.territory-page) .state-cycle-card[data-card-color].is-active .state-cy
 
 .territory-page .state-cycle-card.territory-expanded,
 .territory-page .state-cycle-card.territory-expanded .state-cycle-surface {
-  min-height: calc(100svh - 112px);
+  min-height: 0;
 }
 
 .territory-close-map {

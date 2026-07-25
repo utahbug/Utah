@@ -508,6 +508,7 @@ if (stateSortBy && stateSortDirection && stateCycleGrid) {
   const stateCards = Array.from(stateCycleGrid.querySelectorAll(".state-cycle-card:not(.district-of-columbia-card)"));
   const districtOfColumbiaCard = stateCycleGrid.querySelector(".district-of-columbia-card");
   const districtOfColumbiaFeature = stateCycleGrid.querySelector(".dc-memorial-feature");
+  const districtOfColumbiaDivider = stateCycleGrid.querySelector(".district-of-columbia-divider");
   const stateIllustrationTemplate = stateCycleGrid.querySelector(".state-rotator");
   const isTerritoryPage = document.body.classList.contains("territory-page");
   const stateScenes = [
@@ -539,7 +540,7 @@ if (stateSortBy && stateSortDirection && stateCycleGrid) {
         return figure;
       })
     : [];
-  const stateIllustrationPlacements = [9, 19, 29, 39, 48];
+  const stateIllustrationPlacements = [5, 12, 19, 26, 33, 40, 47];
   const territoryIllustrationPlacements = [0, 2, 4];
   const directionLabels = {
     name: { asc: "A–Z", desc: "Z–A" },
@@ -582,16 +583,13 @@ if (stateSortBy && stateSortDirection && stateCycleGrid) {
       return (first - second) * direction;
     });
     orderedCards.forEach((card) => stateCycleGrid.append(card));
-    if (districtOfColumbiaFeature) stateCycleGrid.append(districtOfColumbiaFeature);
+    if (districtOfColumbiaDivider) stateCycleGrid.append(districtOfColumbiaDivider);
     if (districtOfColumbiaCard) stateCycleGrid.append(districtOfColumbiaCard);
+    if (districtOfColumbiaFeature) stateCycleGrid.append(districtOfColumbiaFeature);
     stateIllustrations.forEach((figure, index) => {
       const placementCard = isTerritoryPage
         ? orderedCards[territoryIllustrationPlacements[index]]
-        : index === 0
-          ? orderedCards.find((card) => card.dataset.name === "Arkansas")
-          : index === 1
-            ? orderedCards.find((card) => card.dataset.name === "Utah")
-            : orderedCards[stateIllustrationPlacements[index - 2]];
+        : orderedCards[stateIllustrationPlacements[index]];
       if (placementCard) placementCard.after(figure);
     });
   }
