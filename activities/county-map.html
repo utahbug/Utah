@@ -75,15 +75,24 @@
     }
 
     .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 8px 16px;
       margin-bottom: 18px;
       padding: 16px 20px;
       border-radius: 9px;
       background: linear-gradient(115deg, #164f4c, #28766c);
       box-shadow: 0 12px 30px rgba(22, 79, 76, 0.2);
+    }
+
+    .topbar-title {
+      min-width: 0;
+    }
+
+    .controls-reserved {
+      grid-column: 1 / -1;
+      min-height: 38px;
     }
 
     h1 {
@@ -402,16 +411,8 @@
       }
 
       .topbar {
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .controls {
-        justify-content: stretch;
-      }
-
-      .btn {
-        flex: 1 1 130px;
+        gap: 8px 10px;
+        padding: 14px;
       }
 
       .map-shell,
@@ -422,14 +423,6 @@
 
     /* Final Utah County Quiz layout */
     .subtitle { display: none; }
-
-    .desktop-controls {
-      display: none;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      margin-top: 7px;
-    }
 
     .text-control {
       min-height: 38px;
@@ -445,10 +438,13 @@
       transition: transform 140ms ease, background 140ms ease, box-shadow 140ms ease;
     }
 
-    .text-control.show-all-control {
+    .map-toggle-control {
+      align-self: start;
+      justify-self: end;
       color: #16443f;
       background: #d8c78d;
       border-color: #eadcae;
+      white-space: nowrap;
     }
 
     .text-control:hover,
@@ -460,12 +456,10 @@
       outline-offset: 2px;
     }
 
-    .text-control.show-all-control:hover,
-    .text-control.show-all-control:focus-visible {
+    .map-toggle-control:hover,
+    .map-toggle-control:focus-visible {
       background: #e5d7a6;
     }
-
-    .mobile-controls { display: flex; }
 
     .map-shell {
       gap: 2px;
@@ -909,21 +903,12 @@
     }
 
     @media (hover: hover) and (pointer: fine) {
-      .topbar {
-        justify-content: flex-start;
-        margin-bottom: 14px;
-      }
-      .topbar > div:first-child { width: max-content; }
-      .desktop-controls { display: flex; }
-      .mobile-controls { display: none; }
+      .topbar { margin-bottom: 14px; }
       .layout { grid-template-columns: minmax(0, 1fr) 292px; }
       .county-label { font-weight: 820; }
     }
 
     @media (hover: none), (pointer: coarse) {
-      .topbar { flex-direction: column; align-items: stretch; }
-      .mobile-controls { justify-content: stretch; }
-      .mobile-controls .btn { flex: 1 1 130px; }
       .county {
         filter:
           brightness(1.1)
@@ -989,17 +974,11 @@
 <body>
   <div class="app">
     <header class="topbar">
-      <div>
+      <div class="topbar-title">
         <h1>Utah Counties</h1>
-        <div class="desktop-controls" aria-label="Map controls">
-          <button class="text-control reset-control" type="button">Clear map</button>
-          <button class="text-control show-all-control" type="button">Show all</button>
-        </div>
       </div>
-      <div class="controls mobile-controls" aria-label="Map controls">
-        <button class="btn secondary reset-control" type="button">Clear map</button>
-        <button class="btn show-all-control" type="button">Show all</button>
-      </div>
+      <button class="text-control map-toggle-control" id="mapToggleControl" type="button" aria-pressed="false">Show all</button>
+      <div class="controls-reserved" aria-hidden="true"></div>
     </header>
 
     <main class="layout">
@@ -1356,8 +1335,7 @@
       if (leftAlignedCountyNames.has(county.name)) county.label.x = 76;
     });
     const svg = document.getElementById("utahMap");
-    const resetButtons = document.querySelectorAll(".reset-control");
-    const showAllButtons = document.querySelectorAll(".show-all-control");
+    const mapToggleButton = document.getElementById("mapToggleControl");
     const countyValue = document.getElementById("countyValue");
     const seatValue = document.getElementById("seatValue");
     let mapCountyValue = null;
@@ -1781,20 +1759,21 @@
     function render() {
       data.counties.forEach(renderCounty);
       renderPanel();
+      mapToggleButton.textContent = allVisible ? "Clear map" : "Show all";
+      mapToggleButton.setAttribute("aria-pressed", String(allVisible));
     }
 
-    resetButtons.forEach((button) => button.addEventListener("click", () => {
+    mapToggleButton.addEventListener("click", () => {
+      if (allVisible) {
         allVisible = false;
         activeCountyId = null;
         resetStates();
-        render();
-      }));
-
-    showAllButtons.forEach((button) => button.addEventListener("click", () => {
+      } else {
         allVisible = true;
         activeCountyId = null;
-        render();
-      }));
+      }
+      render();
+    });
 
     enhanceCountyHistory();
     renderAllList();
