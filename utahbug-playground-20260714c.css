@@ -167,6 +167,334 @@ h1 {
   line-height: .9;
   letter-spacing: 0;
 }
+.home-main {
+  padding-top: 22px;
+}
+.home-section-heading {
+  margin-bottom: 13px;
+}
+.home-section-heading h1,
+.home-section-heading h2 {
+  margin: 0;
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  line-height: 1.08;
+  letter-spacing: .01em;
+}
+.home-section-heading p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: .98rem;
+}
+.home-image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.home-image-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid rgba(31, 36, 40, .18);
+  border-radius: 11px;
+  background: var(--night);
+  box-shadow: 0 5px 0 rgba(31, 36, 40, .12);
+  color: white;
+  text-decoration: none;
+  isolation: isolate;
+}
+.home-image-card::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 38% 0 0;
+  background: linear-gradient(transparent, rgba(18, 24, 28, .88));
+  pointer-events: none;
+}
+.home-image-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+.home-image-card span {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 14px 12px;
+  font-size: clamp(1rem, 2vw, 1.22rem);
+  font-weight: 900;
+  line-height: 1.12;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .65);
+}
+.home-image-card span::after {
+  content: "›";
+  flex: 0 0 auto;
+  color: #f4c768;
+  font-size: 1.25em;
+}
+.home-image-card:hover img,
+.home-image-card:focus-visible img {
+  transform: scale(1.025);
+  filter: saturate(1.08) brightness(1.03);
+}
+.home-image-card:focus-visible {
+  outline: 3px solid #2d6f8b;
+  outline-offset: 3px;
+}
+.daily-utah {
+  margin-top: 34px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.daily-utah-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: 12px;
+}
+.daily-utah-card {
+  position: relative;
+  min-height: 108px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid #abc0b6;
+  border-radius: 10px;
+  padding: 15px 17px;
+  background: #e2f0eb;
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 4px 0 rgba(31, 36, 40, .09);
+}
+.daily-utah-card strong {
+  color: #205f54;
+  font-size: 1.22rem;
+  line-height: 1.1;
+}
+.daily-utah-card > span {
+  color: var(--muted);
+  font-size: .94rem;
+  line-height: 1.3;
+}
+.daily-news nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+.daily-news nav a {
+  color: #245b50;
+  font-size: .89rem;
+  font-weight: 750;
+  text-underline-offset: 3px;
+}
+.daily-traffic {
+  border-color: #d0ad4f;
+  background: #f6e8b4;
+}
+.daily-weather {
+  border-color: #8eb5c8;
+  background: #dcecf4;
+}
+.daily-news::after,
+.daily-traffic::after,
+.daily-weather::after {
+  content: ">";
+  position: absolute;
+  top: 11px;
+  right: 13px;
+  color: rgba(31, 36, 40, .48);
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+.daily-utah-card:hover,
+.daily-utah-card:focus-visible {
+  border-color: #6b9183;
+  box-shadow: 0 0 0 3px rgba(73, 122, 88, .16), 0 4px 0 rgba(31, 36, 40, .09);
+  outline: none;
+}
+.live-updates-page .page-main {
+  width: min(760px, calc(100% - 28px));
+}
+.live-updates-intro {
+  margin: 3px 0 14px;
+  color: var(--muted);
+}
+.live-source-links {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.live-source-links a {
+  min-height: 42px;
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #b7c3bc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 253, 248, .9);
+  color: #245b50;
+  font-weight: 850;
+  text-align: center;
+  text-decoration: none;
+}
+.live-source-links a:hover,
+.live-source-links a:focus-visible {
+  border-color: #6b9183;
+  box-shadow: 0 0 0 3px rgba(73, 122, 88, .16);
+  outline: none;
+}
+.x-feed-panel {
+  min-height: 460px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px;
+  background: white;
+  box-shadow: 0 5px 0 rgba(31, 36, 40, .08);
+}
+.x-feed-panel > .twitter-timeline {
+  min-height: 444px;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  color: #245b50;
+  font-weight: 850;
+  text-align: center;
+  text-underline-offset: 3px;
+}
+.daily-feed-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.daily-feed-tabs button {
+  min-height: 48px;
+  border: 1px solid #b5c2bb;
+  border-radius: 9px;
+  padding: 9px 12px;
+  background: rgba(255, 253, 248, .92);
+  color: #245b50;
+  font: inherit;
+  font-weight: 850;
+  cursor: pointer;
+}
+.daily-feed-tabs button[aria-pressed="true"] {
+  border-color: #6f9d8d;
+  background: #d9ebe5;
+  box-shadow: inset 0 -3px 0 rgba(36, 91, 80, .16);
+  color: #174b42;
+}
+.daily-feed-tabs button:hover,
+.daily-feed-tabs button:focus-visible {
+  border-color: #6b9183;
+  box-shadow: 0 0 0 3px rgba(73, 122, 88, .16);
+  outline: none;
+}
+.daily-feed-shell {
+  min-height: 190px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  background: white;
+  box-shadow: 0 5px 0 rgba(31, 36, 40, .08);
+}
+.daily-feed-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.daily-feed-heading h2 {
+  margin: 0;
+  font-size: 1.18rem;
+}
+.daily-feed-heading a {
+  color: #245b50;
+  font-size: .86rem;
+  font-weight: 800;
+  text-underline-offset: 3px;
+}
+.x-feed-host {
+  min-height: 118px;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  color: var(--muted);
+  text-align: center;
+}
+.x-feed-host iframe {
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+.x-feed-status {
+  margin: 18px 0 0;
+}
+.x-feed-fallback {
+  margin: 0 0 18px;
+  color: #245b50;
+  font-weight: 850;
+  text-underline-offset: 3px;
+}
+.weather-feed > p {
+  margin: 4px 0 12px;
+  color: var(--muted);
+}
+.weather-feed ul {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  list-style: none;
+}
+.weather-feed li {
+  display: grid;
+  gap: 2px;
+  border: 1px solid #c8d9e1;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #e7f2f7;
+}
+.weather-feed li strong {
+  color: #245b50;
+}
+.weather-feed li span {
+  color: var(--muted);
+  font-size: .9rem;
+}
+.weather-forecast-link {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  border: 1px solid #8eb5c8;
+  border-radius: 8px;
+  padding: 9px 12px;
+  background: #dcecf4;
+  color: #245b50;
+  font-weight: 850;
+  text-align: center;
+  text-decoration: none;
+}
+.weather-forecast-link:hover,
+.weather-forecast-link:focus-visible {
+  border-color: #5f91aa;
+  box-shadow: 0 0 0 3px rgba(45, 111, 139, .15);
+  outline: none;
+}
 .help-stack {
   display: grid;
   gap: 16px;
@@ -237,44 +565,129 @@ h1 {
   margin-top: 0;
 }
 .quiz-page .directory-card {
-  border-width: 2px;
-  box-shadow: 0 5px 0 rgba(31, 36, 40, .13);
+  --card-accent: #678d7e;
+  --card-wash: rgba(103, 141, 126, .13);
+  --card-glow: rgba(103, 141, 126, .18);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 104px;
+  gap: 5px;
+  padding: 16px 18px 16px 16px;
+  border: 1px solid #d8d1c5;
+  border-left: 6px solid var(--card-accent);
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    var(--card-wash) 0,
+    rgba(255, 253, 248, .98) 30%,
+    rgba(255, 253, 248, .98) 100%
+  );
+  box-shadow: 0 3px 0 rgba(31, 36, 40, .10);
   transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-  transform-style: preserve-3d;
+}
+.quiz-page .directory-card strong {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #202a27;
+}
+.quiz-page .directory-card strong::after {
+  content: "›";
+  flex: 0 0 auto;
+  color: var(--card-accent);
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: .8;
+}
+.quiz-page .directory-card span {
+  color: #687179;
+}
+.quiz-page .directory-card > * {
+  position: relative;
+  z-index: 1;
+}
+.quiz-page .directory-card::after {
+  content: "";
+  position: absolute;
+  inset: -30% -20%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, .48) 50%,
+    transparent 65%
+  );
+  transform: translateX(-125%);
 }
 .quiz-page .directory-card:nth-child(5n + 1) {
-  background: #d7eee5;
-  border-color: #75a994;
+  --card-accent: #678d7e;
+  --card-wash: rgba(103, 141, 126, .13);
+  --card-glow: rgba(103, 141, 126, .18);
 }
 .quiz-page .directory-card:nth-child(5n + 2) {
-  background: #f5e5a9;
-  border-color: #c8aa45;
+  --card-accent: #b28d35;
+  --card-wash: rgba(178, 141, 53, .13);
+  --card-glow: rgba(178, 141, 53, .18);
 }
 .quiz-page .directory-card:nth-child(5n + 3) {
-  background: #f1cdb9;
-  border-color: #c9805a;
+  --card-accent: #b86e4c;
+  --card-wash: rgba(184, 110, 76, .12);
+  --card-glow: rgba(184, 110, 76, .18);
 }
 .quiz-page .directory-card:nth-child(5n + 4) {
-  background: #d5e9f3;
-  border-color: #74a7c0;
+  --card-accent: #6f9fb5;
+  --card-wash: rgba(111, 159, 181, .12);
+  --card-glow: rgba(111, 159, 181, .18);
 }
 .quiz-page .directory-card:nth-child(5n) {
-  background: #e3d8ef;
-  border-color: #9c80b9;
+  --card-accent: #8c77a6;
+  --card-wash: rgba(140, 119, 166, .12);
+  --card-glow: rgba(140, 119, 166, .18);
 }
 .quiz-page .directory-card:hover,
 .quiz-page .directory-card:focus-visible {
-  filter: saturate(1.08);
+  border-color: #c8c0b5;
+  border-left-color: var(--card-accent);
+  filter: saturate(1.04);
   transform: translateY(-2px);
-  box-shadow: 0 7px 0 rgba(31, 36, 40, .15);
+  box-shadow: 0 5px 0 rgba(31, 36, 40, .11);
 }
-.quiz-page .directory-card.is-flipping {
-  animation: quiz-choice-flip 550ms cubic-bezier(.22, .7, .25, 1);
+.quiz-page .directory-card.is-navigating {
   pointer-events: none;
 }
-@keyframes quiz-choice-flip {
-  0% { transform: perspective(900px) rotateY(0); }
-  100% { transform: perspective(900px) rotateY(180deg); }
+.quiz-page .directory-card.is-navigating[data-nav-motion="press"] {
+  animation: quiz-nav-press 210ms cubic-bezier(.22, .7, .25, 1);
+}
+.quiz-page .directory-card.is-navigating[data-nav-motion="press"]::after {
+  animation: quiz-nav-sweep 210ms ease-out;
+}
+.quiz-page .directory-card.is-navigating[data-nav-motion="slide"] {
+  animation: quiz-nav-slide 240ms cubic-bezier(.22, .7, .25, 1);
+}
+.quiz-page .directory-card.is-navigating[data-nav-motion="pulse"] {
+  animation: quiz-nav-pulse 260ms ease-out;
+}
+@keyframes quiz-nav-press {
+  0% { transform: translateY(0) scale(1); box-shadow: 0 3px 0 rgba(31, 36, 40, .10); }
+  45% { transform: translateY(2px) scale(.99); box-shadow: 0 1px 0 rgba(31, 36, 40, .10); }
+  100% { transform: translateY(-1px) scale(1.003); box-shadow: 0 4px 0 rgba(31, 36, 40, .11); }
+}
+@keyframes quiz-nav-sweep {
+  from { transform: translateX(-125%); }
+  to { transform: translateX(125%); }
+}
+@keyframes quiz-nav-slide {
+  0% { transform: translateX(0); opacity: 1; }
+  48% { transform: translateX(10px); opacity: .82; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes quiz-nav-pulse {
+  0% { filter: saturate(1); box-shadow: 0 3px 0 rgba(31, 36, 40, .10); }
+  50% { filter: saturate(1.08) brightness(1.02); box-shadow: 0 0 0 4px var(--card-glow), 0 3px 0 rgba(31, 36, 40, .10); }
+  100% { filter: saturate(1); box-shadow: 0 3px 0 rgba(31, 36, 40, .10); }
 }
 .directory-card {
   min-height: 112px;
@@ -1863,6 +2276,9 @@ body.states-page .utah-position-marker:focus-visible {
   .home-intro {
     grid-template-columns: 1fr;
   }
+  .home-image-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .reveal-grid, .reveal-grid.compact, .reveal-grid.district-grid, .state-cycle-grid, .district-cycle-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1878,11 +2294,46 @@ body.states-page .utah-position-marker:focus-visible {
     width: 42px;
     height: 42px;
   }
+  .home-main {
+    padding-top: 18px;
+  }
+  .home-section-heading {
+    margin-bottom: 10px;
+  }
+  .home-section-heading h1,
+  .home-section-heading h2 {
+    font-size: 1.45rem;
+  }
+  .home-image-grid {
+    gap: 10px;
+  }
+  .home-image-card {
+    border-radius: 9px;
+  }
+  .home-image-card span {
+    padding: 10px 10px 9px;
+    font-size: .96rem;
+  }
+  .daily-utah {
+    margin-top: 27px;
+    padding-top: 20px;
+  }
+  .daily-utah-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .daily-utah-card {
+    min-height: 88px;
+    padding: 13px 15px;
+  }
   .help-panel, .utah-search {
     padding-left: 22px;
   }
   .directory-grid {
     grid-template-columns: 1fr;
+  }
+  .quiz-page .directory-card {
+    min-height: 92px;
   }
   .states-utah-benchmark {
     grid-template-columns: auto repeat(2, minmax(0, 1fr));
@@ -1946,6 +2397,13 @@ body.states-page .utah-position-marker:focus-visible {
   .search-row, .site-footer { display: grid; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .home-image-card img {
+    transition: none;
+  }
+  .home-image-card:hover img,
+  .home-image-card:focus-visible img {
+    transform: none;
+  }
   .state-illustration {
     animation: none;
   }

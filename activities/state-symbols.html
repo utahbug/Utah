@@ -58,11 +58,14 @@
     button { font: inherit; }
 
     .app-header {
+      position: relative;
+      min-height: 150px;
       color: #fff;
       background:
-        linear-gradient(120deg, rgba(28, 39, 34, .97), rgba(55, 82, 70, .92)),
-        var(--night);
-      border-bottom: 6px solid #d2a342;
+        linear-gradient(90deg, rgba(20, 28, 34, .86), rgba(20, 28, 34, .48) 52%, rgba(20, 28, 34, .2)),
+        url("../assets/utah-header.png");
+      background-size: cover;
+      background-position: center;
     }
 
     .header-inner,
@@ -73,57 +76,66 @@
     }
 
     .header-inner {
-      min-height: 142px;
-      padding: 19px 0;
-      display: grid;
-      align-content: center;
-      gap: 8px;
+      min-height: 150px;
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
     }
 
     .parent-home {
-      width: fit-content;
+      display: inline-flex;
+      align-items: center;
       color: #fff;
-      font-weight: 800;
       text-decoration: none;
+    }
+
+    .parent-home strong {
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      line-height: .9;
+      font-weight: 900;
+    }
+
+    .parent-home strong::after {
+      content: "unofficial";
+      position: absolute;
+      left: 14px;
+      bottom: 8px;
+      color: rgba(255, 255, 255, .86);
+      font-size: .22em;
+      line-height: 1;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: .04em;
     }
 
     .parent-home:hover,
     .parent-home:focus-visible {
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      text-shadow: 0 0 14px rgba(255, 255, 255, .28);
+      outline: none;
     }
 
-    .kicker {
+    .symbol-page-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .symbol-page-heading h1 {
       margin: 0;
-      color: #f1d88b;
-      font-size: .78rem;
-      font-weight: 900;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.8rem, 9vw, 6.5rem);
-      line-height: .92;
-      letter-spacing: -.04em;
-    }
-
-    .header-inner p:last-child {
-      max-width: 720px;
-      margin: 8px 0 0;
-      color: #edf6f3;
-      font-size: clamp(1rem, 2vw, 1.18rem);
+      font-size: clamp(1.35rem, 4.2vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: .04em;
     }
 
     main { padding: 12px 0 42px; }
 
     .toolbar {
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
-      justify-content: space-between;
       gap: 14px;
-      flex-wrap: wrap;
       margin-bottom: 16px;
     }
 
@@ -133,22 +145,15 @@
       font-weight: 750;
     }
 
-    .progress {
-      display: inline-block;
-      margin-left: .45rem;
-      font-size: .9rem;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
     .toolbar-actions {
+      grid-column: 1 / -1;
       display: flex;
       align-items: center;
       gap: 9px;
-      flex-wrap: wrap;
     }
 
     .sort-control {
+      width: 100%;
       display: inline-flex;
       align-items: center;
       gap: 7px;
@@ -158,6 +163,7 @@
     }
 
     .sort-control select {
+      flex: 1 1 auto;
       min-height: 42px;
       border: 1px solid #b9c4bb;
       border-radius: 8px;
@@ -177,31 +183,30 @@
       outline: none;
     }
 
-    .reset,
-    .show-all {
-      min-height: 42px;
-      border: 1px solid #b9c4bb;
-      border-radius: 8px;
-      padding: 8px 14px;
-      background: #fff;
-      color: #245b50;
-      font-weight: 900;
+    .symbol-all-toggle {
+      min-height: 36px;
+      border: 1px solid #245b50;
+      border-radius: 7px;
+      padding: 5px 12px;
+      background: #245b50;
+      color: #fff;
+      font-size: .9rem;
+      font-weight: 800;
+      white-space: nowrap;
       cursor: pointer;
     }
 
-    .reset:hover,
-    .reset:focus-visible,
-    .show-all:hover,
-    .show-all:focus-visible {
-      border-color: #789885;
-      box-shadow: 0 0 0 3px rgba(73, 122, 88, .18);
-      outline: none;
+    .symbol-all-toggle[aria-pressed="true"] {
+      border-color: #9eaea5;
+      background: #fff;
+      color: #245b50;
     }
 
-    .show-all {
-      border-color: #245b50;
-      background: #245b50;
-      color: #fff;
+    .symbol-all-toggle:hover,
+    .symbol-all-toggle:focus-visible {
+      border-color: #789885;
+      outline: 2px solid #789885;
+      outline-offset: 2px;
     }
 
     .reveal-grid {
@@ -421,6 +426,7 @@
     }
 
     @media (max-width: 520px) {
+      .app-header,
       .header-inner { min-height: 128px; }
       .toolbar {
         align-items: stretch;
@@ -429,11 +435,6 @@
       .instructions {
         width: 100%;
         min-width: 0;
-      }
-      .progress {
-        display: block;
-        margin: 2px 0 0;
-        white-space: normal;
       }
       .symbol-decoration {
         min-height: 88px;
@@ -458,11 +459,6 @@
         width: 100%;
         min-width: 0;
       }
-      .reset, .show-all {
-        width: 100%;
-        min-width: 0;
-        padding-inline: 6px;
-      }
       .reveal-grid { grid-template-columns: 1fr; }
       .reveal-card { min-height: 108px; }
       .reveal-card.is-revealed { min-height: 310px; }
@@ -479,18 +475,17 @@
 <body>
   <header class="app-header">
     <div class="header-inner">
-      <a class="parent-home" href="../index.html">← UtahBug home</a>
-      <h1>Utah Symbols</h1>
-      <p>Explore all 40 official state symbols and designations.</p>
+      <a class="parent-home" href="../index.html"><strong>UtahBug</strong></a>
     </div>
   </header>
 
   <main>
+    <div class="symbol-page-heading">
+      <h1>UTAH SYMBOLS</h1>
+      <button class="symbol-all-toggle" id="symbol-all-toggle" type="button" aria-pressed="false">Show all</button>
+    </div>
     <div class="toolbar">
-      <p class="instructions" id="instructions">
-        Guess the symbol. Flip the card.
-        <span class="progress" id="progress" aria-live="polite">0 of 40 revealed</span>
-      </p>
+      <p class="instructions" id="instructions">Guess the symbol. Flip the card.</p>
       <div class="toolbar-actions">
         <label class="sort-control" for="sort-cards">
           <span>Sort</span>
@@ -500,8 +495,6 @@
             <option value="date">Date incorporated</option>
           </select>
         </label>
-        <button class="reset" id="reset" type="button">Reset cards</button>
-        <button class="show-all" id="show-all" type="button">Show all</button>
       </div>
     </div>
 
@@ -561,12 +554,11 @@
   <script>
     const cards = document.querySelectorAll(".reveal-card");
     const tapLabels = document.querySelectorAll(".tap-label");
-    const resetButton = document.querySelector("#reset");
-    const showAllButton = document.querySelector("#show-all");
+    const allSymbolsButton = document.querySelector("#symbol-all-toggle");
     const sortCardsSelect = document.querySelector("#sort-cards");
     const cardGrid = document.querySelector(".reveal-grid");
-    const progress = document.querySelector("#progress");
     const compactScreen = window.matchMedia("(max-width: 520px)");
+    let allSymbolsShown = false;
     const officialOrder = Array.from(cards);
     const decorationData = [
       ["cherry-pie.png", "A slice of cherry pie"],
@@ -766,11 +758,6 @@
       );
     }
 
-    function updateProgress() {
-      const revealedCount = cardGrid.querySelectorAll(".is-revealed").length;
-      progress.textContent = `${revealedCount} of ${cards.length} revealed`;
-    }
-
     function chooseFlipStyle(card) {
       card.classList.remove("flip-spin", "flip-vertical");
       const roll = Math.random();
@@ -784,37 +771,38 @@
 
     cards.forEach((card) => {
       card.addEventListener("click", () => {
-        if (cardGrid.classList.contains("showing-all")) {
+        if (allSymbolsShown) {
           cardGrid.classList.remove("showing-all");
           cards.forEach((otherCard) => setCard(otherCard, false));
+          allSymbolsShown = false;
+          allSymbolsButton.textContent = "Show all";
+          allSymbolsButton.setAttribute("aria-pressed", "false");
           chooseFlipStyle(card);
           setCard(card, true);
-          updateProgress();
           return;
         }
 
         const revealing = !card.classList.contains("is-revealed");
         if (revealing) chooseFlipStyle(card);
         setCard(card, revealing);
-        updateProgress();
       });
     });
 
-    resetButton.addEventListener("click", () => {
-      cardGrid.classList.remove("showing-all");
-      cards.forEach((card) => setCard(card, false));
-      updateProgress();
-      cardGrid.querySelector(".reveal-card").focus();
-    });
-
-    showAllButton.addEventListener("click", () => {
-      cardGrid.classList.toggle("showing-all", compactScreen.matches);
-      cards.forEach((card) => {
-        card.classList.remove("flip-spin", "flip-vertical");
-        setCard(card, true);
-      });
-      updateProgress();
-      cardGrid.querySelector(".reveal-card").focus();
+    allSymbolsButton.addEventListener("click", () => {
+      if (allSymbolsShown) {
+        cardGrid.classList.remove("showing-all");
+        cards.forEach((card) => setCard(card, false));
+        allSymbolsShown = false;
+      } else {
+        cardGrid.classList.toggle("showing-all", compactScreen.matches);
+        cards.forEach((card) => {
+          card.classList.remove("flip-spin", "flip-vertical");
+          setCard(card, true);
+        });
+        allSymbolsShown = true;
+      }
+      allSymbolsButton.textContent = allSymbolsShown ? "Reset" : "Show all";
+      allSymbolsButton.setAttribute("aria-pressed", String(allSymbolsShown));
     });
 
     sortCardsSelect.addEventListener("change", () => {
