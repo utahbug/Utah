@@ -780,6 +780,18 @@ input {
   gap: 12px;
   flex-wrap: wrap;
 }
+.state-page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.state-page-heading .quiz-page-label {
+  margin-bottom: 0;
+}
+.state-toolbar-placeholder {
+  min-height: 30px;
+}
 .state-instructions {
   margin: 0;
   color: var(--muted);
@@ -788,7 +800,7 @@ input {
 .state-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: nowrap;
 }
 .state-actions button {
@@ -811,7 +823,8 @@ input {
   flex-wrap: wrap;
   gap: 10px;
 }
-.state-sort-controls label {
+.state-sort-controls label,
+.state-sort-order {
   flex: 1 1 220px;
   display: grid;
   gap: 5px;
@@ -839,6 +852,34 @@ input {
   margin-bottom: 2px;
 }
 
+.utah-reference-card {
+  margin-top: 10px;
+  scroll-margin-top: 10px;
+}
+
+.all-states-divider {
+  margin: 12px 0 2px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #68746d;
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.all-states-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1 1 auto;
+  background: rgba(82, 102, 91, .22);
+}
+
+.all-states-divider + .state-sort-section {
+  margin-top: 4px;
+}
+
 .states-page .state-toolbar {
   margin-top: 0;
 }
@@ -849,7 +890,8 @@ input {
   gap: 6px;
 }
 
-.states-page .state-sort-controls label {
+.states-page .state-sort-controls label,
+.states-page .state-sort-order {
   min-width: 0;
   gap: 2px;
   font-size: 0.72rem;
@@ -860,29 +902,58 @@ input {
   padding: 5px 26px 5px 7px;
   font-size: clamp(0.72rem, 2.8vw, 0.88rem);
 }
+.state-order-buttons {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+.state-order-buttons button {
+  min-height: 36px;
+  border: 1px solid #b9c4bb;
+  border-radius: 7px;
+  color: #245b50;
+  background: #fff;
+  font: inherit;
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+.state-order-buttons button[aria-pressed="true"] {
+  border-color: #8fa99b;
+  color: #345f55;
+  background: #dce8e1;
+}
+.state-order-buttons button:hover,
+.state-order-buttons button:focus-visible {
+  border-color: #789885;
+  box-shadow: 0 0 0 3px rgba(73, 122, 88, .18);
+  outline: none;
+}
 .reset-state-grid,
 .reveal-state-grid {
-  min-height: 36px;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
+  min-height: 32px;
+  border: 1px solid #9eaea5;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .82);
   color: #245b50;
-  padding: 4px 0;
-  font-size: 0.9rem;
+  padding: 4px 9px;
+  font-size: 0.78rem;
   font-weight: 800;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
   cursor: pointer;
 }
 .reveal-state-grid {
-  background: transparent;
-  color: #245b50;
+  border-color: #245b50;
+  background: #245b50;
+  color: #fff;
 }
 .reset-state-grid:hover,
 .reset-state-grid:focus-visible,
 .reveal-state-grid:hover,
 .reveal-state-grid:focus-visible {
-  color: #a84e2d;
+  border-color: #a84e2d;
   outline: none;
 }
 .reset-state-grid:focus-visible,
@@ -1087,6 +1158,37 @@ input {
   font-size: clamp(0.58rem, 2.4vw, 0.72rem);
   line-height: 1.15;
 }
+.states-utah-benchmark {
+  position: static;
+  margin: 8px 0 10px;
+  padding: 0.55rem 0.7rem;
+  display: grid;
+  grid-template-columns: auto repeat(4, minmax(0, 1fr));
+  align-items: center;
+  gap: 0.55rem;
+}
+.states-utah-benchmark > strong {
+  margin: 0;
+}
+.states-utah-benchmark > span {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.28rem;
+  white-space: nowrap;
+}
+.states-utah-benchmark > span b,
+.states-utah-benchmark > span small {
+  display: inline;
+  margin: 0;
+}
+.states-utah-benchmark > span b {
+  font-size: clamp(0.74rem, 2.7vw, 0.9rem);
+}
+.states-utah-benchmark > span small {
+  font-size: clamp(0.58rem, 2.2vw, 0.7rem);
+}
 
 .territory-status-label {
   margin: 0.8rem 0 0;
@@ -1193,6 +1295,61 @@ body:not(.territory-page) .state-cycle-card[data-card-color] .state-cycle-surfac
 body:not(.territory-page) .state-cycle-card[data-card-color].is-active .state-cycle-surface {
   background: var(--state-card-color);
   border-color: var(--state-card-border);
+}
+body.states-page .state-cycle-card[data-name="Utah"] .state-name {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
+  font-size: 1.1rem;
+}
+body.states-page .state-cycle-card[data-name="Utah"] .state-name::before {
+  content: "";
+  flex: 0 0 27px;
+  width: 27px;
+  height: 33px;
+  background: url("assets/utahbug-icon-512.png") center / contain no-repeat;
+  pointer-events: none;
+}
+body.states-page .state-cycle-card[data-name="Utah"][data-stage="0"] .state-cycle-surface {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+body.states-page .state-cycle-card[data-name="Utah"][data-stage="0"] .state-name::before {
+  flex-basis: 54px;
+  width: 54px;
+  height: 66px;
+}
+body.states-page .utah-position-marker {
+  min-height: 72px;
+  align-self: center;
+  padding: 14px;
+  border: 1px dashed rgba(182, 106, 61, .72);
+  border-radius: 8px;
+  background: rgba(243, 225, 199, .58);
+  color: #5f4838;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+body.states-page .utah-position-marker strong {
+  font-size: 1.04rem;
+}
+body.states-page .utah-position-marker span {
+  color: #74685f;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-align: right;
+}
+body.states-page .utah-position-marker:hover,
+body.states-page .utah-position-marker:focus-visible {
+  border-color: #9d7ab5;
+  background: #eee5f5;
+  outline: none;
 }
 
 .territory-page .state-cycle-card[data-name="American Samoa"] {
@@ -1726,6 +1883,17 @@ body:not(.territory-page) .state-cycle-card[data-card-color].is-active .state-cy
   }
   .directory-grid {
     grid-template-columns: 1fr;
+  }
+  .states-utah-benchmark {
+    grid-template-columns: auto repeat(2, minmax(0, 1fr));
+    gap: 0.3rem 0.6rem;
+  }
+  .states-utah-benchmark > strong {
+    grid-row: 1 / span 2;
+    align-self: center;
+  }
+  .states-utah-benchmark > span {
+    justify-content: flex-start;
   }
   .history-editor-list {
     grid-template-columns: 1fr;
