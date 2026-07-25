@@ -827,6 +827,7 @@ input {
   color: var(--ink);
   background: #fff;
   font: inherit;
+  font-weight: 400;
 }
 
 .states-page .state-sort-section {
