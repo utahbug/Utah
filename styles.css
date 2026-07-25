@@ -1133,6 +1133,11 @@ input {
   padding: 16px 14px 14px;
   align-content: start;
 }
+.states-page .state-cycle-card.stage-capital,
+.states-page .state-cycle-card.stage-capital .state-cycle-surface,
+.states-page .state-cycle-card.stage-capital .state-stage {
+  min-height: 0;
+}
 .state-cycle-card.stage-map .state-cycle-surface {
   padding: 0;
   overflow: hidden;
