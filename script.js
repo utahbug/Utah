@@ -455,6 +455,8 @@ function renderTerritoryExpanded(card) {
 }
 
 let stateCardColorIndex = 0;
+let stateGridMode = "";
+let updateStateGridButtons = () => {};
 document.querySelectorAll(".state-cycle-card").forEach((card) => {
   if (!document.body.classList.contains("territory-page")) {
     card.dataset.cardColor = card.dataset.name === "Utah"
@@ -476,6 +478,11 @@ document.querySelectorAll(".state-cycle-card").forEach((card) => {
         }
         return;
       }
+      document.querySelectorAll(".states-page .state-cycle-card").forEach((otherCard) => {
+        if (otherCard !== card) resetStateCard(otherCard);
+      });
+      stateGridMode = "";
+      updateStateGridButtons();
       const current = Number(card.dataset.stage || "0");
       if (current === 0) {
         renderStateStage(card, 4);
@@ -489,7 +496,13 @@ document.querySelectorAll(".state-cycle-card").forEach((card) => {
 
   if (reset) {
     reset.addEventListener("click", () => {
-      resetStateCard(card);
+      if (document.body.classList.contains("states-page") && stateGridMode) {
+        document.querySelectorAll(".states-page .state-cycle-card").forEach(resetStateCard);
+        stateGridMode = "";
+        updateStateGridButtons();
+      } else {
+        resetStateCard(card);
+      }
     });
   }
 });
@@ -497,9 +510,7 @@ document.querySelectorAll(".state-cycle-card").forEach((card) => {
 const revealStateGrid = document.querySelector(".reveal-state-grid");
 const resetStateGrid = document.querySelector(".reset-state-grid");
 if (revealStateGrid && resetStateGrid) {
-  let stateGridMode = "";
-
-  const updateStateGridButtons = () => {
+  updateStateGridButtons = () => {
     resetStateGrid.textContent = stateGridMode === "details" ? "Reset" : "All Details";
     revealStateGrid.textContent = stateGridMode === "flags" ? "Reset" : "All Flags";
     resetStateGrid.setAttribute("aria-pressed", stateGridMode === "details" ? "true" : "false");
