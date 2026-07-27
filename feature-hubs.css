@@ -203,6 +203,7 @@ button { font: inherit; }
   display: grid;
   gap: 12px;
 }
+.highways-page .hub-game { padding-top: 25px; }
 .hub-game-bar,
 .hub-question {
   border: 1px solid var(--hub-line);
@@ -225,10 +226,27 @@ button { font: inherit; }
 }
 .hub-bottom-status {
   margin: 18px 0 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--hub-line);
   color: var(--hub-deep);
   font-weight: 800;
+  text-align: center;
+}
+.hub-restart-link {
+  position: absolute;
+  right: 0;
+  top: -27px;
+  border: 0;
+  padding: 0;
+  color: var(--hub-deep);
+  background: transparent;
+  font-style: italic;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.hub-restart-link:hover,
+.hub-restart-link:focus-visible {
+  color: var(--hub-clay);
+  outline: none;
 }
 .hub-button {
   min-height: 38px;
@@ -262,7 +280,7 @@ button { font: inherit; }
 .hub-next-button:active {
   transform: translateY(0);
 }
-.hub-question { padding: clamp(18px, 4vw, 34px); text-align: center; }
+.hub-question { position: relative; padding: clamp(18px, 4vw, 34px); text-align: center; }
 .hub-kicker {
   margin: 0 0 7px;
   color: var(--hub-clay);
