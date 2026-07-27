@@ -216,6 +216,19 @@ button { font: inherit; }
   padding: 9px 12px;
 }
 .hub-game-bar p { margin: 0; color: var(--hub-deep); font-weight: 800; }
+.hub-game-bar.is-actions-only {
+  justify-content: flex-end;
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+.hub-bottom-status {
+  margin: 18px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--hub-line);
+  color: var(--hub-deep);
+  font-weight: 800;
+}
 .hub-button {
   min-height: 38px;
   border: 1px solid #a8b8b4;
