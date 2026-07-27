@@ -63,16 +63,16 @@ button { font: inherit; }
 .hub-home::before {
   content: "";
   position: absolute;
-  top: 12px;
-  right: max(14px, calc((100% - 1120px) / 2));
-  width: 40px;
-  height: 40px;
+  left: calc(max(14px, (100% - 1120px) / 2) + clamp(104px, 11vw, 132px));
+  bottom: 6px;
+  width: 32px;
+  height: 32px;
   border: 1px solid rgba(255, 255, 255, .7);
   border-radius: 50%;
   background:
     rgba(20, 28, 34, .42)
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 11.5 9-7.5 9 7.5'/%3E%3Cpath d='M5.5 10v10h13V10'/%3E%3Cpath d='M9.5 20v-6h5v6'/%3E%3C/svg%3E")
-    center / 21px 21px no-repeat;
+    center / 18px 18px no-repeat;
   box-shadow: 0 2px 9px rgba(0, 0, 0, .2);
   pointer-events: none;
 }
