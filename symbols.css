@@ -364,6 +364,14 @@ button { font: inherit; }
   grid-template-columns: auto minmax(0, 1fr) auto;
 }
 
+.quiz-page .game-status {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.quiz-page .game-categories {
+  justify-self: start;
+}
+
 .game-categories {
   justify-self: center;
   display: inline-grid;
@@ -635,12 +643,28 @@ button { font: inherit; }
 }
 
 .sprint-actions {
-  min-height: 50px;
+  min-height: 62px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.sprint-response {
+  min-height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin-top: 12px;
+}
+
+.sprint-progress {
+  margin: 0;
+  color: var(--muted);
+  font-size: .82rem;
+  font-weight: 700;
 }
 
 .sprint-feedback {
