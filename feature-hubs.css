@@ -232,7 +232,7 @@ button { font: inherit; }
 }
 .hub-restart-link {
   position: absolute;
-  right: 0;
+  right: 12px;
   top: -27px;
   border: 0;
   padding: 0;
