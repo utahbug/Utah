@@ -226,6 +226,28 @@ button { font: inherit; }
   font-weight: 800;
   cursor: pointer;
 }
+.hub-next-button {
+  justify-self: center;
+  width: auto;
+  min-width: 132px;
+  min-height: 44px;
+  padding: 9px 24px;
+  border-color: #76564e;
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--hub-blue), var(--hub-clay));
+  box-shadow: 0 4px 12px rgba(40, 86, 79, .2);
+}
+.hub-next-button:hover,
+.hub-next-button:focus-visible {
+  border-color: var(--hub-deep);
+  background: linear-gradient(135deg, #33586a, #94492d);
+  outline: none;
+  transform: translateY(-1px);
+}
+.hub-next-button:active {
+  transform: translateY(0);
+}
 .hub-question { padding: clamp(18px, 4vw, 34px); text-align: center; }
 .hub-kicker {
   margin: 0 0 7px;
