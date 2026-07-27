@@ -63,8 +63,9 @@ button { font: inherit; }
 .hub-home::before {
   content: "";
   position: absolute;
-  top: 10px;
-  left: max(14px, calc((100% - 1120px) / 2));
+  top: 50%;
+  left: calc(max(14px, (100% - 1120px) / 2) + clamp(164px, 22vw, 290px) + 4px);
+  transform: translateY(-50%);
   width: 32px;
   height: 32px;
   border: 1px solid rgba(255, 255, 255, .7);
