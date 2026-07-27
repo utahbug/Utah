@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#3f6577"><title>Utah Map Match | UtahBug</title>
-  <link rel="icon" href="../assets/favicon.ico" sizes="any"><link rel="stylesheet" href="../feature-hubs.css?v=20260726a">
+  <link rel="icon" href="../assets/favicon.ico" sizes="any"><link rel="stylesheet" href="../feature-hubs.css?v=20260727i">
 </head>
-<body>
+<body class="map-match-page">
   <header class="hub-header"><div class="hub-header-inner"><a class="hub-home" href="../index.html"><strong>UtahBug</strong></a></div></header>
   <main class="hub-main">
     <header class="hub-heading">
@@ -13,10 +13,10 @@
       <nav class="hub-mode-links"><a href="maps-travel.html">Explore</a><a href="maps-highways.html">Highways</a><a aria-current="page" href="maps-match.html">Map Match</a></nav>
     </header>
     <section class="hub-game">
-      <div class="hub-game-bar"><p id="status">Question 1</p><button class="hub-button" id="restart">New round</button></div>
-      <div class="hub-question"><p class="hub-kicker" id="best"></p><p class="hub-prompt" id="prompt"></p><div class="hub-choices" id="choices"></div></div>
-      <p class="hub-feedback" id="feedback" aria-live="polite"></p><button class="hub-button" id="next" hidden>Next</button>
+      <div class="hub-question"><button class="hub-restart-link" id="restart">New round</button><p class="hub-kicker" id="best"></p><p class="hub-prompt" id="prompt"></p><div class="hub-choices" id="choices"></div></div>
+      <p class="hub-feedback" id="feedback" aria-live="polite"></p><button class="hub-button hub-next-button" id="next" hidden>Next</button>
     </section>
+    <p class="hub-bottom-status" id="status">Question 1</p>
   </main>
   <footer class="hub-footer"><span>&copy; 2026 UtahBug</span><a href="maps-travel.html">Explore Utah maps</a></footer>
   <script src="../maps-travel-data.js?v=20260726a"></script>

@@ -111,7 +111,8 @@ button { font: inherit; }
   letter-spacing: .04em;
 }
 .hub-heading p { margin: 5px 0 0; color: var(--hub-muted); }
-.highways-page .hub-heading { margin-bottom: 6px; }
+.highways-page .hub-heading,
+.map-match-page .hub-heading { margin-bottom: 6px; }
 .hub-mode-links {
   display: flex;
   flex: 0 0 auto;
@@ -203,7 +204,8 @@ button { font: inherit; }
   display: grid;
   gap: 12px;
 }
-.highways-page .hub-game { padding-top: 25px; }
+.highways-page .hub-game,
+.map-match-page .hub-game { padding-top: 25px; }
 .hub-game-bar,
 .hub-question {
   border: 1px solid var(--hub-line);
