@@ -111,6 +111,7 @@ button { font: inherit; }
   letter-spacing: .04em;
 }
 .hub-heading p { margin: 5px 0 0; color: var(--hub-muted); }
+.highways-page .hub-heading { margin-bottom: 6px; }
 .hub-mode-links {
   display: flex;
   flex: 0 0 auto;
