@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#345d70">
   <meta name="description" content="Identify Utah parks and national monuments from quick clues.">
-  <title>Utah Parks Sprint | UtahBug</title>
+  <title>Utah Parks Quiz | UtahBug</title>
   <link rel="icon" href="../assets/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
@@ -29,7 +29,7 @@
       <nav class="parks-mode-links" aria-label="Utah parks activities">
         <a href="national-parks.html">Explore</a>
         <a href="parks-match.html">Match</a>
-        <a aria-current="page" href="parks-sprint.html">Sprint</a>
+        <a aria-current="page" href="parks-sprint.html">Quiz</a>
       </nav>
     </header>
 
@@ -199,7 +199,7 @@
         result.className = "parks-sprint-result";
         heading.textContent = `${score} of ${questions.length} correct`;
         copy.textContent = score === questions.length
-          ? "Perfect sprint!"
+          ? "Perfect quiz!"
           : "Play again for a different set of places.";
         button.className = "parks-game-button";
         button.type = "button";

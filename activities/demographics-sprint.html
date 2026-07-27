@@ -8,7 +8,7 @@
     <link rel="icon" href="../assets/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
-    <title>Utah Demographics Sprint | UtahBug</title>
+    <title>Utah Demographics Quiz | UtahBug</title>
     <link rel="stylesheet" href="../utahbug-playground-20260714c.css?v=20260725s">
     <link rel="stylesheet" href="../demographics.css?v=20260725b">
   </head>
@@ -30,7 +30,7 @@
         <nav class="demographics-mode-links" aria-label="Utah demographics activities">
           <a href="demographics.html">Explore</a>
           <a href="demographics-match.html">Match</a>
-          <a aria-current="page" href="demographics-sprint.html">Sprint</a>
+          <a aria-current="page" href="demographics-sprint.html">Quiz</a>
         </nav>
       </header>
 
@@ -165,7 +165,7 @@
           result.className = "demographics-sprint-result";
           heading.textContent = `${score} of ${questions.length} correct`;
           copy.textContent = score === questions.length
-            ? "Perfect sprint!"
+            ? "Perfect quiz!"
             : "Play again for a different mix of questions.";
           button.className = "demographics-game-button";
           button.type = "button";

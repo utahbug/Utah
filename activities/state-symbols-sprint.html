@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#23322c">
   <meta name="description" content="Test your recognition of Utah's official state symbols in ten quick questions.">
-  <title>Utah Symbols Sprint | UtahBug</title>
+  <title>Utah Symbols Quiz | UtahBug</title>
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/state-symbols/favicon-32.png">
   <link rel="icon" type="image/png" sizes="512x512" href="../assets/state-symbols/utah-symbols-icon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/state-symbols/apple-touch-icon.png">
@@ -29,7 +29,7 @@
       <nav class="symbol-mode-links" aria-label="Utah symbol activities">
         <a href="state-symbols.html">Explore</a>
         <a href="state-symbols-match.html">Match</a>
-        <a aria-current="page" href="state-symbols-sprint.html">Sprint</a>
+        <a aria-current="page" href="state-symbols-sprint.html">Quiz</a>
       </nav>
     </header>
 
@@ -283,7 +283,7 @@
         heading.textContent = `${score} of ${questions.length} correct`;
         copy.textContent =
           score === questions.length
-            ? "Perfect sprint!"
+            ? "Perfect quiz!"
             : "Play again for a different set of symbols.";
         button.className = "game-button sprint-next";
         button.type = "button";

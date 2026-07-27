@@ -8,7 +8,7 @@
     <link rel="icon" href="../assets/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
-    <title>Utah History Sprint | UtahBug</title>
+    <title>Utah History Quiz | UtahBug</title>
     <link rel="stylesheet" href="../utahbug-playground-20260714c.css?v=20260725r">
     <link rel="stylesheet" href="../history.css?v=20260725a">
   </head>
@@ -30,7 +30,7 @@
         <nav class="history-mode-links" aria-label="Utah history activities">
           <a href="history.html">Explore</a>
           <a href="history-order.html">Order</a>
-          <a aria-current="page" href="history-sprint.html">Sprint</a>
+          <a aria-current="page" href="history-sprint.html">Quiz</a>
         </nav>
       </header>
 
@@ -154,7 +154,7 @@
           choices.replaceChildren();
           feedback.textContent =
             score === questions.length
-              ? "Perfect history sprint!"
+              ? "Perfect history quiz!"
               : "Good work. Try another round to improve your score.";
           feedback.className = "history-game-feedback is-correct";
           explanation.hidden = true;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#3f6577"><title>Utah 2034 Sprint | UtahBug</title>
+  <meta name="theme-color" content="#3f6577"><title>Utah 2034 Quiz | UtahBug</title>
   <link rel="icon" href="../assets/favicon.ico" sizes="any"><link rel="stylesheet" href="../feature-hubs.css?v=20260726a">
 </head>
 <body>
@@ -10,7 +10,7 @@
   <main class="hub-main">
     <header class="hub-heading">
       <div><h1>UTAH 2034</h1><p>Identify the venue from one quick clue.</p></div>
-      <nav class="hub-mode-links"><a href="olympics-2034.html">Explore</a><a href="olympics-2034-venues.html">Venues</a><a aria-current="page" href="olympics-2034-sprint.html">Sprint</a></nav>
+      <nav class="hub-mode-links"><a href="olympics-2034.html">Explore</a><a href="olympics-2034-venues.html">Venues</a><a aria-current="page" href="olympics-2034-sprint.html">Quiz</a></nav>
     </header>
     <section class="hub-game">
       <div class="hub-game-bar"><p id="status">Question 1</p><button class="hub-button" id="restart" type="button">Restart</button></div>
@@ -39,7 +39,7 @@
           }; return b;
         }));
       }
-      next.onclick = () => { if (++index >= deck.length) { feedback.textContent = `Sprint complete — ${score} of ${deck.length}.`; next.hidden = true; } else render(); };
+      next.onclick = () => { if (++index >= deck.length) { feedback.textContent = `Quiz complete — ${score} of ${deck.length}.`; next.hidden = true; } else render(); };
       document.querySelector("#restart").onclick = start; start();
     })();
   </script>
