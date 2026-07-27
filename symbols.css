@@ -219,11 +219,8 @@ button { font: inherit; }
 
 .symbol-card {
   --tone: var(--tone-gold);
-  overflow: hidden;
-  border: 1px solid var(--tone);
-  border-radius: 11px;
-  background: var(--panel);
-  box-shadow: 0 5px 14px rgba(50, 60, 54, .08);
+  min-width: 0;
+  background: transparent;
 }
 
 .tone-1 { --tone: var(--tone-clay); }
@@ -232,17 +229,19 @@ button { font: inherit; }
 .tone-4 { --tone: var(--tone-plum); }
 
 .symbol-card-label {
-  min-height: 48px;
-  display: grid;
-  place-items: center;
+  min-height: 38px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
   margin: 0;
-  padding: 8px 10px;
-  background: var(--tone);
-  color: #fff;
-  font-size: .92rem;
+  padding: 5px 8px 7px;
+  color: var(--green);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .045em;
   line-height: 1.18;
   text-align: center;
-  text-shadow: 0 1px 1px rgba(31, 36, 40, .22);
+  text-transform: uppercase;
 }
 
 .symbol-card-media {
@@ -253,7 +252,9 @@ button { font: inherit; }
   padding: 5px;
   background:
     radial-gradient(circle at center, #f8f5ed, #e7e4db);
-  border-bottom: 1px solid var(--line);
+  border: 1px solid var(--tone);
+  border-radius: 11px;
+  box-shadow: 0 4px 12px rgba(50, 60, 54, .07);
 }
 
 .symbol-card-media img {
@@ -320,11 +321,11 @@ button { font: inherit; }
 }
 
 .symbol-card-copy {
-  min-height: 72px;
+  min-height: 62px;
   display: grid;
-  place-content: center;
+  place-content: start center;
   gap: 2px;
-  padding: 8px 10px 10px;
+  padding: 8px 8px 4px;
   text-align: center;
 }
 
