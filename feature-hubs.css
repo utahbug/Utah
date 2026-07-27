@@ -227,41 +227,16 @@ button { font: inherit; }
   cursor: pointer;
 }
 .hub-next-button {
-  position: relative;
   justify-self: center;
   width: auto;
   min-width: 132px;
   min-height: 44px;
   padding: 9px 24px;
   border-color: #76564e;
-  border-right: 0;
-  border-radius: 999px 0 0 999px;
-  margin-right: 22px;
+  border-radius: 999px;
   color: #fff;
   background: linear-gradient(135deg, var(--hub-blue), var(--hub-clay));
   box-shadow: 0 4px 12px rgba(40, 86, 79, .2);
-}
-.hub-next-button::before,
-.hub-next-button::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 0;
-  height: 0;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-.hub-next-button::before {
-  right: -23px;
-  border-top: 23px solid transparent;
-  border-bottom: 23px solid transparent;
-  border-left: 23px solid #76564e;
-}
-.hub-next-button::after {
-  right: -21px;
-  border-top: 21px solid transparent;
-  border-bottom: 21px solid transparent;
-  border-left: 21px solid var(--hub-clay);
 }
 .hub-next-button:hover,
 .hub-next-button:focus-visible {
@@ -269,10 +244,6 @@ button { font: inherit; }
   background: linear-gradient(135deg, #33586a, #94492d);
   outline: none;
   transform: translateY(-1px);
-}
-.hub-next-button:hover::after,
-.hub-next-button:focus-visible::after {
-  border-left-color: #94492d;
 }
 .hub-next-button:active {
   transform: translateY(0);
