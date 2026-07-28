@@ -227,8 +227,14 @@ button { font: inherit; }
   background: transparent;
 }
 .hub-bottom-status {
-  margin: 18px 0 0;
+  width: fit-content;
+  margin: 18px auto 0;
+  border: 1px solid rgba(63, 101, 119, .24);
+  border-radius: 999px;
+  padding: 6px 14px;
   color: var(--hub-deep);
+  background: linear-gradient(135deg, rgba(63, 101, 119, .13), rgba(170, 91, 57, .12));
+  box-shadow: 0 2px 7px rgba(40, 86, 79, .07);
   font-weight: 800;
   text-align: center;
 }
