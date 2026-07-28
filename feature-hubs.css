@@ -375,20 +375,14 @@ button { font: inherit; }
 .route-shield::before {
   content: "";
   display: inline-block;
-  width: 25px;
-  height: 28px;
+  width: 32px;
+  height: 38px;
   margin-right: 10px;
   vertical-align: middle;
-  border: 2px solid currentColor;
-  background: rgba(255,255,255,.62);
-}
-.route-shield.is-interstate::before {
-  border-radius: 48% 48% 55% 55% / 34% 34% 68% 68%;
-  box-shadow: inset 0 7px 0 rgba(170,91,57,.25);
-}
-.route-shield.is-us-route::before {
-  border-radius: 45% 45% 38% 38% / 28% 28% 65% 65%;
-  clip-path: polygon(13% 0,87% 0,100% 24%,85% 100%,15% 100%,0 24%);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 52'%3E%3Cpath d='M3 3h29v8h9v38H3z' fill='%23fffdf8' stroke='%233f6577' stroke-width='2.4' stroke-linejoin='round'/%3E%3Cpath d='M9 4v44M4 35l36-13M19 4l2 44M4 18l36 17' fill='none' stroke='%23aa5b39' stroke-width='1.7' stroke-linecap='round' opacity='.82'/%3E%3Cpath d='M4 28h36M28 4l-4 44' fill='none' stroke='%233f6577' stroke-width='1.35' stroke-linecap='round' opacity='.78'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  filter: drop-shadow(0 1px 1px rgba(32, 38, 42, .12));
 }
 .map-tile {
   border-radius: 7px 16px 7px 16px;
