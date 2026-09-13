@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/state-symbols/favicon-32.png">
   <link rel="icon" type="image/png" sizes="512x512" href="../assets/state-symbols/utah-symbols-icon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/state-symbols/apple-touch-icon.png">
-  <link rel="stylesheet" href="../symbols.css?v=20260912a">
+  <link rel="stylesheet" href="../symbols.css?v=20260913a">
 </head>
 <body class="quiz-page">
   <header class="app-header">
@@ -41,7 +41,11 @@
           <button type="button" data-category="culture" aria-pressed="false">Culture</button>
           <button type="button" data-category="heritage" aria-pressed="false">Heritage</button>
         </div>
-        <button class="game-button" id="restart-sprint" type="button">Restart</button>
+        <button class="game-button quiz-restart" id="restart-sprint" type="button" aria-label="Restart quiz" title="Restart quiz">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M3 11a9 9 0 1 1 2.7 7.4M3 4v7h7"/>
+          </svg>
+        </button>
       </div>
 
       <div class="sprint-panel" id="sprint-panel">

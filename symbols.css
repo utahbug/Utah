@@ -387,10 +387,24 @@ button { font: inherit; }
 
 .quiz-page .game-status {
   grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
 }
 
 .quiz-page .game-categories {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
   justify-self: start;
+}
+
+.quiz-page .quiz-restart {
+  grid-column: 2;
+  grid-row: 1;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
 }
 
 .game-categories {
