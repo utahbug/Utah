@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/state-symbols/favicon-32.png">
   <link rel="icon" type="image/png" sizes="512x512" href="../assets/state-symbols/utah-symbols-icon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/state-symbols/apple-touch-icon.png">
-  <link rel="stylesheet" href="../symbols.css?v=20260727a">
+  <link rel="stylesheet" href="../symbols.css?v=20260912a">
 </head>
 <body class="quiz-page">
   <header class="app-header">
@@ -50,13 +50,12 @@
           <p class="sprint-text-clue" id="sprint-text-clue"></p>
           <img id="sprint-image" alt="" hidden>
         </div>
-        <p class="sprint-question">Choose the official answer.</p>
+        <p class="sprint-question" id="sprint-feedback" aria-live="polite">Choose the official answer.</p>
         <div class="sprint-choices" id="sprint-choices"></div>
       </div>
 
       <div class="sprint-actions">
         <div class="sprint-response">
-          <p class="sprint-feedback" id="sprint-feedback" aria-live="polite"></p>
           <button class="game-button sprint-next" id="sprint-next" type="button" hidden>Next</button>
         </div>
         <p class="sprint-progress" id="sprint-status">Question 1 of 10 &middot; Score 0</p>
@@ -80,7 +79,7 @@
       let image = document.querySelector("#sprint-image");
       let textClue = document.querySelector("#sprint-text-clue");
       let choices = document.querySelector("#sprint-choices");
-      const feedback = document.querySelector("#sprint-feedback");
+      let feedback = document.querySelector("#sprint-feedback");
       const nextButton = document.querySelector("#sprint-next");
       const restartButton = document.querySelector("#restart-sprint");
       const categoryButtons = document.querySelectorAll(
@@ -195,7 +194,7 @@
           button.setAttribute("aria-label", `${selectedName}, incorrect`);
           feedback.classList.remove("is-correct");
           feedback.classList.add("is-wrong");
-          feedback.textContent = "Not quite — try again.";
+          feedback.textContent = "Incorrect — try again.";
           return;
         }
 
@@ -209,11 +208,8 @@
 
         if (!missedCurrentQuestion) {
           score += 1;
-          feedback.textContent = `Correct — ${symbol.label}: ${correctName}.`;
-        } else {
-          feedback.textContent =
-            `Correct on the retry — ${symbol.label}: ${correctName}.`;
         }
+        feedback.textContent = "Correct";
         feedback.classList.remove("is-wrong");
         feedback.classList.add("is-correct");
 
@@ -257,7 +253,7 @@
           image.alt = `${symbol.name}, ${symbol.label}`;
         }
         feedback.classList.remove("is-correct", "is-wrong");
-        feedback.textContent = "";
+        feedback.textContent = "Choose the official answer.";
         nextButton.hidden = true;
 
         answers.forEach((answerName) => {
@@ -318,13 +314,14 @@
             <p class="sprint-text-clue" id="sprint-text-clue"></p>
             <img id="sprint-image" alt="" hidden>
           </div>
-          <p class="sprint-question">Choose the official answer.</p>
+          <p class="sprint-question" id="sprint-feedback" aria-live="polite">Choose the official answer.</p>
           <div class="sprint-choices" id="sprint-choices"></div>
         `;
         label = panel.querySelector("#sprint-label");
         image = panel.querySelector("#sprint-image");
         textClue = panel.querySelector("#sprint-text-clue");
         choices = panel.querySelector("#sprint-choices");
+        feedback = panel.querySelector("#sprint-feedback");
         renderQuestion();
       }
 
