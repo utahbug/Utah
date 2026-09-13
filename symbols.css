@@ -717,6 +717,11 @@ button { font: inherit; }
   font-weight: 700;
 }
 
+.quiz-page .sprint-question-progress {
+  padding: 4px 6px 0;
+  text-align: center;
+}
+
 .sprint-feedback {
   margin: 0;
   color: var(--green);

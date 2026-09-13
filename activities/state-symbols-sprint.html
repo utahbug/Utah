@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/state-symbols/favicon-32.png">
   <link rel="icon" type="image/png" sizes="512x512" href="../assets/state-symbols/utah-symbols-icon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/state-symbols/apple-touch-icon.png">
-  <link rel="stylesheet" href="../symbols.css?v=20260913a">
+  <link rel="stylesheet" href="../symbols.css?v=20260913b">
 </head>
 <body class="quiz-page">
   <header class="app-header">
@@ -24,7 +24,6 @@
     <header class="symbol-heading">
       <div>
         <h1>UTAH SYMBOLS</h1>
-        <p>Choose the correct symbol in ten quick questions.</p>
       </div>
       <nav class="symbol-mode-links" aria-label="Utah symbol activities">
         <a href="state-symbols.html">Explore</a>
@@ -51,6 +50,7 @@
       <div class="sprint-panel" id="sprint-panel">
         <p class="sprint-label" id="sprint-label"></p>
         <div class="sprint-image">
+          <p class="sprint-progress sprint-question-progress" id="sprint-question-progress"></p>
           <p class="sprint-text-clue" id="sprint-text-clue"></p>
           <img id="sprint-image" alt="" hidden>
         </div>
@@ -62,7 +62,7 @@
         <div class="sprint-response">
           <button class="game-button sprint-next" id="sprint-next" type="button" hidden>Next</button>
         </div>
-        <p class="sprint-progress" id="sprint-status">Question 1 of 10 &middot; Score 0</p>
+        <p class="sprint-progress" id="sprint-status">Score 0</p>
       </div>
     </section>
   </main>
@@ -80,6 +80,7 @@
       const status = document.querySelector("#sprint-status");
       const panel = document.querySelector("#sprint-panel");
       let label = document.querySelector("#sprint-label");
+      let questionProgress = document.querySelector("#sprint-question-progress");
       let image = document.querySelector("#sprint-image");
       let textClue = document.querySelector("#sprint-text-clue");
       let choices = document.querySelector("#sprint-choices");
@@ -225,8 +226,7 @@
           image.hidden = false;
         }
 
-        status.textContent =
-          `Question ${questionIndex + 1} of ${questions.length} · Score ${score}`;
+        status.textContent = `Score ${score}`;
         nextButton.textContent =
           questionIndex === questions.length - 1 ? "See score" : "Next";
         nextButton.hidden = false;
@@ -242,8 +242,9 @@
 
         answered = false;
         missedCurrentQuestion = false;
-        status.textContent =
-          `Question ${questionIndex + 1} of ${questions.length} · Score ${score}`;
+        questionProgress.textContent =
+          `Question ${questionIndex + 1} of ${questions.length}`;
+        status.textContent = `Score ${score}`;
         label.textContent = symbol.label;
         textClue.hidden = false;
         textClue.classList.remove("musical-symbol");
@@ -315,6 +316,7 @@
         panel.innerHTML = `
           <p class="sprint-label" id="sprint-label"></p>
           <div class="sprint-image">
+            <p class="sprint-progress sprint-question-progress" id="sprint-question-progress"></p>
             <p class="sprint-text-clue" id="sprint-text-clue"></p>
             <img id="sprint-image" alt="" hidden>
           </div>
@@ -322,6 +324,7 @@
           <div class="sprint-choices" id="sprint-choices"></div>
         `;
         label = panel.querySelector("#sprint-label");
+        questionProgress = panel.querySelector("#sprint-question-progress");
         image = panel.querySelector("#sprint-image");
         textClue = panel.querySelector("#sprint-text-clue");
         choices = panel.querySelector("#sprint-choices");
