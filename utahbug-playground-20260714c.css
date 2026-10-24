@@ -300,106 +300,49 @@ h1 {
   grid-template-columns: 1.25fr 1fr 1fr;
   gap: 12px;
 }
-.daily-utah-card {
-  position: relative;
+.image-card--banner {
   min-height: 108px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  border: 1px solid #abc0b6;
-  border-radius: 10px;
-  padding: 15px 17px;
-  background: #e2f0eb;
-  color: var(--ink);
-  text-decoration: none;
-  box-shadow: 0 4px 0 rgba(31, 36, 40, .09);
-}
-.daily-utah-card strong {
-  color: #205f54;
-  font-size: 1.22rem;
-  line-height: 1.1;
-}
-.daily-utah-card > span {
-  color: var(--muted);
-  font-size: .94rem;
-  line-height: 1.3;
-}
-.daily-news nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 12px;
-}
-.daily-news nav a {
-  color: #245b50;
-  font-size: .89rem;
-  font-weight: 750;
-  text-underline-offset: 3px;
-}
-.daily-traffic {
-  border-color: #d0ad4f;
-  background: #f6e8b4;
-}
-.daily-weather {
-  border-color: #8eb5c8;
-  background: #dcecf4;
-}
-.daily-news::after,
-.daily-traffic::after,
-.daily-weather::after {
-  content: ">";
-  position: absolute;
-  top: 11px;
-  right: 13px;
-  color: rgba(31, 36, 40, .48);
-  font-size: 1.15rem;
-  font-weight: 900;
-}
-.daily-utah-card:hover,
-.daily-utah-card:focus-visible {
-  border-color: #6b9183;
-  box-shadow: 0 0 0 3px rgba(73, 122, 88, .16), 0 4px 0 rgba(31, 36, 40, .09);
-  outline: none;
-}
-.daily-utah-card.image-card {
+  padding: 15px 44px 15px 17px;
   scroll-margin-block: 8px;
-  padding-right: 44px;
-  border-color: rgba(31, 36, 40, .18);
-  border-radius: 11px;
-  background: var(--night);
-  color: #fff;
-  box-shadow: 0 5px 0 rgba(31, 36, 40, .12);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .65);
 }
-.daily-utah-card.image-card > img {
+.image-card--banner > img {
   position: absolute;
   inset: 0;
   z-index: -2;
 }
-.daily-news.image-card > img { object-position: 50% 35%; }
-.daily-weather.image-card > img { object-position: 50% 0%; }
-.daily-utah-card.image-card::before {
+.image-card--civic > img { object-position: 50% 35%; }
+.image-card--sky > img { object-position: 50% 0%; }
+.image-card--banner::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  /* At least 64% black gives white text > 6.6:1 even over white artwork. */
-  background: linear-gradient(90deg, rgba(0, 0, 0, .76), rgba(0, 0, 0, .64));
+  background: linear-gradient(transparent, rgba(18, 24, 28, .48) 8px, rgba(18, 24, 28, .74));
   pointer-events: none;
 }
-.daily-utah-card.image-card strong,
-.daily-utah-card.image-card > span {
-  color: inherit;
+.image-card--banner strong {
+  font-size: 1.22rem;
+  font-weight: 900;
+  line-height: 1.1;
 }
-.daily-utah-card.image-card::after {
+.image-card--banner > span {
+  font-size: .94rem;
+  line-height: 1.3;
+}
+.image-card--banner::after {
   content: "›" / "";
+  position: absolute;
   top: 50%;
+  right: 13px;
   transform: translateY(-50%);
   color: #f4c768;
   font-size: 1.5rem;
-}
-.daily-utah-card.image-card:focus-visible {
-  outline: 3px solid #2d6f8b;
-  outline-offset: 3px;
+  font-weight: 900;
 }
 .live-updates-page .page-main {
   width: min(760px, calc(100% - 28px));
@@ -2678,7 +2621,8 @@ body.states-page .utah-position-marker:focus-visible {
   .home-image-grid {
     gap: 10px;
   }
-  .home-image-card {
+  .home-image-card,
+  .image-card {
     border-radius: 9px;
   }
   .home-image-card span {
@@ -2693,9 +2637,9 @@ body.states-page .utah-position-marker:focus-visible {
     grid-template-columns: 1fr;
     gap: 10px;
   }
-  .daily-utah-card {
+  .image-card--banner {
     min-height: 88px;
-    padding: 13px 15px;
+    padding: 13px 44px 13px 15px;
   }
   .help-panel, .utah-search {
     padding-left: 22px;
